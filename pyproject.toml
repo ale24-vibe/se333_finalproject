@@ -1,0 +1,13 @@
+[project]
+name = "alexle"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+	"fastapi>=0.95.0",
+	"uvicorn[standard]>=0.22.0",
+	"httpx>=0.24.0",
+	"fastmcp>=0.1.0",
+	"mcp[cli]>=0.1.0",
+]
