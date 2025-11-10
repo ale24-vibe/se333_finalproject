@@ -1,9 +1,4 @@
 {
-	"servers": {
-		"ApleTest": {
-			"url": "http://127.0.0.1:8000",
-			"type": "http"
-		}
-	},
-	"inputs": []
+	"inputs": [],
+	"servers": {}
 }
