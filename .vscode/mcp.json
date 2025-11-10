@@ -1,6 +1,6 @@
 {
 	"servers": {
-		"my-mcp-server-fe4d0138": {
+		"ApleTest": {
 			"url": "http://127.0.0.1:8000",
 			"type": "http"
 		}
