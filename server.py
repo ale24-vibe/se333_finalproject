@@ -1,9 +1,11 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, PlainTextResponse
+from fastapi.responses import StreamingResponse
 import uvicorn
 import logging
 import json
 import re
+import asyncio
 from typing import Any, Dict
 
 app = FastAPI()
@@ -31,8 +33,19 @@ TOOLS: Dict[str, Dict[str, Any]] = {
 }
 
 @app.get("/")
-async def root():
-    return PlainTextResponse("ApleTest MCP server running")
+async def sse_root():
+    # Provide an SSE event stream so the MCP extension can connect for async notifications.
+    async def event_stream():
+        try:
+            while True:
+                # SSE comment keepalive (some clients prefer comments)
+                yield ": keepalive\n\n"
+                await asyncio.sleep(15)
+        except asyncio.CancelledError:
+            return
+
+    # Return the streaming response directly so clients can open an SSE connection.
+    return StreamingResponse(event_stream(), media_type="text/event-stream")
 
 @app.get("/health")
 async def health():
@@ -115,7 +128,8 @@ async def mcp_endpoint(request: Request):
             "version": "1.0",
             "description": "Minimal calculator tool for MCP-compatible clients",
             "capabilities": ["calculate", "evaluate expressions"],
-            "transport": "sse"
+            "transport": "sse",
+            "tools": [{"name": name, "doc": info.get("doc", "")} for name, info in TOOLS.items()]
         }
         return JSONResponse(_make_rpc_response(body, res))
 
