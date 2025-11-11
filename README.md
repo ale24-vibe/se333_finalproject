@@ -6,45 +6,55 @@ Quick start
 
 1. Create a venv (recommended):
 
-	python -m venv .venv
-	source .venv/bin/activate
+	```markdown
+	# MCP Server and dev setup
 
-2. Install dependencies (from project root):
+	This project contains a minimal MCP-compatible server and instructions to set up a virtual environment for development and testing with VS Code MCP integration.
 
-	pip install -e .
+	Quick start
 
-	or explicitly:
-	pip install fastapi uvicorn httpx fastmcp mcp[cli]
+	1. Create a venv (recommended):
 
-3. Run the server (uses `server.py` compat runner):
+		python -m venv .venv
+		source .venv/bin/activate
 
-	/Users/alexle/SE Final Project/.venv/bin/python /Users/alexle/SE Final Project/server.py
+	2. Install dependencies (from project root):
 
-4. In VS Code: Press Ctrl+Shift+P → MCP: Add Server and paste the server URL (e.g. http://127.0.0.1:8001/mcp). Give it a name and press Enter.
+		pip install -e .
 
-5. Test in the Chat view: example prompts shown below.
+		or explicitly:
+		pip install fastapi uvicorn httpx fastmcp mcp[cli]
 
-Discovery and named tools
+	3. Run the server:
 
-- The server exposes a discovery endpoint at GET /tools which returns a list of registered tool names. Example:
+		python server.py
 
-	curl -s http://127.0.0.1:8001/tools | jq
+	4. In VS Code: Press Ctrl+Shift+P → MCP: Add Server and paste the server URL (e.g. http://127.0.0.1:8000/mcp or http://127.0.0.1:8000). Give it a name and press Enter.
 
-- You can dispatch to a specific tool by including a "tool" field in the POST payload to /mcp. Example:
+	5. Test in the Chat view: "what is 1+2" should return the correct result.
 
-	curl -s -X POST http://127.0.0.1:8001/mcp -H 'Content-Type: application/json' -d '{"tool":"aple_calculator","text":"what is 1+2"}' | jq
+	Discovery and named tools
 
-VS Code launch
+	- The server exposes a discovery endpoint at GET /tools which returns a list of registered tool names. Example:
 
-Open the Run view in VS Code and use the "Run ApleTest server" configuration to start the server from the editor.
+		curl -s http://127.0.0.1:8001/tools | jq
 
-Logging
+	- You can dispatch to a specific tool by including a "tool" field in the POST payload to /mcp. Example:
 
-The server logs initialize and MCP requests to the console, so watch the terminal panel or the output captured by the VS Code Run view while debugging.
+		curl -s -X POST http://127.0.0.1:8001/mcp -H 'Content-Type: application/json' -d '{"tool":"aple_calculator","text":"what is 1+2"}' | jq
 
-Notes
+	VS Code launch
 
-- The server runs a FastAPI app that accepts POST JSON payloads at `/mcp` with a `text` field or JSON-RPC bodies.
-- The calculator evaluates expressions safely (digits and operators only). NLP normalization supports common math words and number words (e.g., "two times three").
+	Open the Run view in VS Code and use the "Run server" configuration to start the server from the editor.
 
-# se333_finalproject
+	Logging
+
+	The server logs initialize and MCP requests to the console, so watch the terminal panel or the output captured by the VS Code Run view while debugging.
+
+	Notes
+
+	- The `server.py` prefers `fastmcp` if available, otherwise runs a small FastAPI app that accepts POST JSON payloads at `/mcp` with a `text` field.
+	- The calculator is intentionally conservative: it only evaluates expressions containing digits and + - * / ( ) to avoid arbitrary code execution.
+
+	# se333_finalproject
+	```
