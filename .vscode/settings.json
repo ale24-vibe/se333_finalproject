@@ -1,0 +1,10 @@
+{
+    "chat.mcp.serverSampling": {
+        "SE Final Project/.vscode/mcp.json: ApleTest": {
+            "allowedModels": [
+                "copilot/gpt-5-mini",
+                "copilot/auto"
+            ]
+        }
+    }
+}
