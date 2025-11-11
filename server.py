@@ -88,6 +88,11 @@ except Exception:
 			async def sse_root():
 				return StreamingResponse(event_stream(), media_type="text/event-stream")
 
+			# Minimal health endpoint for tooling to probe availability.
+			@self.app.get("/health")
+			async def health() -> Any:
+				return {"status": "ok", "service": "ApleTest"}
+
 		async def handle_message(self, text: str) -> str:
 			# kept for compatibility if other code calls mcp.handle_message
 			m = re.search(r"what is (.+)", text, re.I)
@@ -105,9 +110,10 @@ except Exception:
 			else:
 				return "I can only calculate numeric expressions like 'what is 1+2'."
 
-		def run(self, host: str = "127.0.0.1", port: int = 8000, transport: str = "sse") -> None:
+		def run(self, host: str = "127.0.0.1", port: int = 8001, transport: str = "sse") -> None:
 			# transport arg accepted for compatibility with the requested snippet
 			uvicorn.run(self.app, host=host, port=port)
+
 
 	mcp = SimpleMCP()
 
