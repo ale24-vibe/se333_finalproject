@@ -15,6 +15,33 @@ import json
 import asyncio
 from typing import Any
 
+# Support a decorator-style registration used by some MCP examples:
+#
+#   @mcp
+#   def my_tool(text: str) -> str:
+#       return "..."
+#
+#When used, the decorated function(s) are collected in a module-level
+#registry and, if the fallback SimpleMCP is used, the first registered
+#function will be installed as the instance's `handle_message` callable.
+#This makes code that uses an `@mcp` decorator work in the fallback.
+_registered_mcp_functions: list = []
+def mcp(func=None):
+	"""Decorator (or direct call) to register a function for MCP handling.
+
+	Usage:
+	  @mcp
+	  def calc(text: str) -> str: ...
+	"""
+	if func is None:
+		def _decorator(f):
+			_registered_mcp_functions.append(f)
+			return f
+		return _decorator
+	else:
+		_registered_mcp_functions.append(func)
+		return func
+
 try:
 	# Prefer real fastmcp if available
 	import fastmcp as _fastmcp  # type: ignore
@@ -60,6 +87,10 @@ except Exception:
 				Returns JSON: {"result": "..."}
 				"""
 				payload = await req.json()
+				# Accept both simple payloads ("text") and JSON-RPC style requests
+				# If a JSON-RPC initialize request arrives, respond immediately.
+				if isinstance(payload, dict) and payload.get("method") == "initialize":
+					return {"result": {"status": "initialized"}}
 				text = payload.get("text") or payload.get("message") or ""
 				result = await handle_message_text(text)
 				return {"result": result}
@@ -68,9 +99,18 @@ except Exception:
 			@self.app.post("/")
 			async def handle_root_post(req: Request) -> Any:
 				payload = await req.json()
+				# Some MCP/extension clients send an initialize request as JSON-RPC
+				if isinstance(payload, dict) and payload.get("method") == "initialize":
+					return {"result": {"status": "initialized"}}
 				text = payload.get("text") or payload.get("message") or ""
 				result = await handle_message_text(text)
 				return {"result": result}
+
+			@self.app.post("/initialize")
+			async def handle_initialize(req: Request) -> Any:
+				# Explicit initialize endpoint some clients use
+				_ = await req.json()
+				return {"result": {"status": "initialized"}}
 
 			# Provide a minimal SSE GET endpoint so clients that fall back to
 			# legacy SSE can connect to `/` as an event stream. This generator
@@ -116,6 +156,17 @@ except Exception:
 
 
 	mcp = SimpleMCP()
+
+# If any functions were registered using the module-level `@mcp` decorator
+# install the first one as the SimpleMCP instance's `handle_message`.
+if _registered_mcp_functions:
+	_f = _registered_mcp_functions[0]
+	if asyncio.iscoroutinefunction(_f):
+		mcp.handle_message = _f  # type: ignore
+	else:
+		async def _wrap(text: str, _f=_f) -> str:
+			return _f(text)
+		mcp.handle_message = _wrap  # type: ignore
 
 
 if __name__ == "__main__":
