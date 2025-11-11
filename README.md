@@ -24,6 +24,24 @@ Quick start
 
 5. Test in the Chat view: "what is 1+2" should return the correct result.
 
+Discovery and named tools
+
+- The server exposes a discovery endpoint at GET /tools which returns a list of registered tool names. Example:
+
+	curl -s http://127.0.0.1:8001/tools | jq
+
+- You can dispatch to a specific tool by including a "tool" field in the POST payload to /mcp. Example:
+
+	curl -s -X POST http://127.0.0.1:8001/mcp -H 'Content-Type: application/json' -d '{"tool":"aple_calculator","text":"what is 1+2"}' | jq
+
+VS Code launch
+
+Open the Run view in VS Code and use the "Run ApleTest server" configuration to start the server from the editor.
+
+Logging
+
+The server logs initialize and MCP requests to the console, so watch the terminal panel or the output captured by the VS Code Run view while debugging.
+
 Notes
 
 - The `server.py` prefers `fastmcp` if available, otherwise runs a small FastAPI app that accepts POST JSON payloads at `/mcp` with a `text` field.
