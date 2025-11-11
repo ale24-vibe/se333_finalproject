@@ -16,149 +16,148 @@ import asyncio
 from typing import Any
 
 _registered_mcp_functions: list = []
-def mcp(func=None):
-	"""Decorator (or direct call) to register a function for MCP handling.
 
-	Usage:
-	  @mcp
-	  def calc(text: str) -> str: ...
-	"""
-	if func is None:
-		def _decorator(f):
-			_registered_mcp_functions.append(f)
-			return f
-		return _decorator
-	else:
-		_registered_mcp_functions.append(func)
-		return func
+def mcp(func=None):
+    if func is None:
+        def _decorator(f):
+            _registered_mcp_functions.append(f)
+            return f
+        return _decorator
+    else:
+        _registered_mcp_functions.append(func)
+        return func
 
 try:
-	# Prefer real fastmcp if available
-	import fastmcp as _fastmcp  # type: ignore
-	# Use fastmcp only if it exposes a blocking `run` callable we can use
-	if hasattr(_fastmcp, "run") and callable(getattr(_fastmcp, "run")):
-		mcp = _fastmcp  # expose a module-like object for compatibility
-	else:
-		raise ImportError("fastmcp installed but does not provide a usable run() - falling back")
+    import fastmcp as _fastmcp  # type: ignore
+    if hasattr(_fastmcp, "run") and callable(getattr(_fastmcp, "run")):
+        mcp = _fastmcp
+    else:
+        raise ImportError("fastmcp installed but does not provide a usable run() - falling back")
 except Exception:
-	# Fallback implementation using FastAPI/uvicorn
-	from fastapi import FastAPI, Request
-	from fastapi.responses import StreamingResponse, JSONResponse
-	import uvicorn
+    from fastapi import FastAPI, Request
+    from fastapi.responses import StreamingResponse, JSONResponse
+    import uvicorn
 
-	class SimpleMCP:
-		def __init__(self) -> None:
-			self.app = FastAPI()
+    class SimpleMCP:
+        def __init__(self) -> None:
+            self.app = FastAPI()
 
-			async def handle_message_text(text: str) -> str:
-				# Very small, safe calculator: look for "what is <expr>" or just an expression
-				m = re.search(r"what is (.+)", text, re.I)
-				expr = m.group(1) if m else text.strip()
+            async def handle_message_text(text: str) -> str:
+                m = re.search(r"what is (.+)", text, re.I)
+                expr = m.group(1) if m else text.strip()
+                if not expr:
+                    return "no input"
+                if re.match(r"^[0-9+\-*/(). \t]+$", expr):
+                    try:
+                        value = eval(expr, {"__builtins__": None}, {})
+                        return str(value)
+                    except Exception as e:
+                        return f"error: {e}"
+                else:
+                    return "I can only calculate numeric expressions like 'what is 1+2'."
 
-				# Allow only digits, spaces and basic operators to avoid unsafe eval
-				if not expr:
-					return "no input"
+            @self.app.post("/mcp")
+            async def handle_mcp(req: Request) -> Any:
+                payload = await req.json()
+                if isinstance(payload, dict) and payload.get("method") == "initialize":
+                    return {
+                        "result": {
+                            "status": "initialized",
+                            "tool_name": "ApleTest",
+                            "version": "1.0",
+                            "description": "Minimal calculator tool for MCP-compatible clients",
+                            "capabilities": ["calculate", "evaluate expressions"],
+                            "transport": "sse"
+                        }
+                    }
+                text = payload.get("text") or payload.get("message") or ""
+                result = await handle_message_text(text)
+                return {"result": result}
 
-				if re.match(r"^[0-9+\-*/(). \t]+$", expr):
-					try:
-						# Evaluate in a tiny restricted scope
-						value = eval(expr, {"__builtins__": None}, {})
-						return str(value)
-					except Exception as e:
-						return f"error: {e}"
-				else:
-					return "I can only calculate numeric expressions like 'what is 1+2'."
+            @self.app.post("/")
+            async def handle_root_post(req: Request) -> Any:
+                payload = await req.json()
+                if isinstance(payload, dict) and payload.get("method") == "initialize":
+                    return {
+                        "result": {
+                            "status": "initialized",
+                            "tool_name": "ApleTest",
+                            "version": "1.0",
+                            "description": "Minimal calculator tool for MCP-compatible clients",
+                            "capabilities": ["calculate", "evaluate expressions"],
+                            "transport": "sse"
+                        }
+                    }
+                text = payload.get("text") or payload.get("message") or ""
+                result = await handle_message_text(text)
+                return {"result": result}
 
-			@self.app.post("/mcp")
-			async def handle_mcp(req: Request) -> Any:
-				"""Handle incoming MCP-like requests.
+            @self.app.post("/initialize")
+            async def handle_initialize(req: Request) -> Any:
+                _ = await req.json()
+                return {
+                    "result": {
+                        "status": "initialized",
+                        "tool_name": "ApleTest",
+                        "version": "1.0",
+                        "description": "Minimal calculator tool for MCP-compatible clients",
+                        "capabilities": ["calculate", "evaluate expressions"],
+                        "transport": "sse"
+                    }
+                }
 
-				Expected JSON: {"text": "..."}
-				Returns JSON: {"result": "..."}
-				"""
-				payload = await req.json()
-				# Accept both simple payloads ("text") and JSON-RPC style requests
-				# If a JSON-RPC initialize request arrives, respond immediately.
-				if isinstance(payload, dict) and payload.get("method") == "initialize":
-					return {"result": {"status": "initialized"}}
-				text = payload.get("text") or payload.get("message") or ""
-				result = await handle_message_text(text)
-				return {"result": result}
+            @self.app.get("/metadata")
+            async def metadata() -> Any:
+                return {
+                    "tool_name": "ApleTest",
+                    "version": "1.0",
+                    "description": "Minimal calculator tool for MCP-compatible clients",
+                    "capabilities": ["calculate", "evaluate expressions"],
+                    "mcp_compatible": True
+                }
 
-			# Accept POSTs at the root path too — some MCP clients POST to `/`
-			@self.app.post("/")
-			async def handle_root_post(req: Request) -> Any:
-				payload = await req.json()
-				# Some MCP/extension clients send an initialize request as JSON-RPC
-				if isinstance(payload, dict) and payload.get("method") == "initialize":
-					return {"result": {"status": "initialized"}}
-				text = payload.get("text") or payload.get("message") or ""
-				result = await handle_message_text(text)
-				return {"result": result}
+            @self.app.get("/")
+            async def sse_root():
+                async def event_stream():
+                    try:
+                        while True:
+                            yield ": keepalive\n\n"
+                            await asyncio.sleep(15)
+                    except asyncio.CancelledError:
+                        return
+                return StreamingResponse(event_stream(), media_type="text/event-stream")
 
-			@self.app.post("/initialize")
-			async def handle_initialize(req: Request) -> Any:
-				# Explicit initialize endpoint some clients use
-				_ = await req.json()
-				return {"result": {"status": "initialized"}}
+            @self.app.get("/health")
+            async def health() -> Any:
+                return {"status": "ok", "service": "ApleTest"}
 
-			# Provide a minimal SSE GET endpoint so clients that fall back to
-			# legacy SSE can connect to `/` as an event stream. This generator
-			# yields periodic keepalive comments so the connection stays open.
-			async def event_stream():
-				try:
-					while True:
-						# SSE comment (keeps connection alive)
-						yield ": keepalive\n\n"
-						await asyncio.sleep(15)
-				except asyncio.CancelledError:
-					return
+        async def handle_message(self, text: str) -> str:
+            m = re.search(r"what is (.+)", text, re.I)
+            expr = m.group(1) if m else text.strip()
+            if not expr:
+                return "no input"
+            if re.match(r"^[0-9+\-*/(). \t]+$", expr):
+                try:
+                    value = eval(expr, {"__builtins__": None}, {})
+                    return str(value)
+                except Exception as e:
+                    return f"error: {e}"
+            else:
+                return "I can only calculate numeric expressions like 'what is 1+2'."
 
-			@self.app.get("/")
-			async def sse_root():
-				return StreamingResponse(event_stream(), media_type="text/event-stream")
+        def run(self, host: str = "127.0.0.1", port: int = 8001, transport: str = "sse") -> None:
+            uvicorn.run(self.app, host=host, port=port)
 
-			# Minimal health endpoint for tooling to probe availability.
-			@self.app.get("/health")
-			async def health() -> Any:
-				return {"status": "ok", "service": "ApleTest"}
+    mcp = SimpleMCP()
 
-		async def handle_message(self, text: str) -> str:
-			# kept for compatibility if other code calls mcp.handle_message
-			m = re.search(r"what is (.+)", text, re.I)
-			expr = m.group(1) if m else text.strip()
-
-			if not expr:
-				return "no input"
-
-			if re.match(r"^[0-9+\-*/(). \t]+$", expr):
-				try:
-					value = eval(expr, {"__builtins__": None}, {})
-					return str(value)
-				except Exception as e:
-					return f"error: {e}"
-			else:
-				return "I can only calculate numeric expressions like 'what is 1+2'."
-
-		def run(self, host: str = "127.0.0.1", port: int = 8001, transport: str = "sse") -> None:
-			# transport arg accepted for compatibility with the requested snippet
-			uvicorn.run(self.app, host=host, port=port)
-
-
-	mcp = SimpleMCP()
-
-# If any functions were registered using the module-level `@mcp` decorator
-# install the first one as the SimpleMCP instance's `handle_message`.
 if _registered_mcp_functions:
-	_f = _registered_mcp_functions[0]
-	if asyncio.iscoroutinefunction(_f):
-		mcp.handle_message = _f  # type: ignore
-	else:
-		async def _wrap(text: str, _f=_f) -> str:
-			return _f(text)
-		mcp.handle_message = _wrap  # type: ignore
-
+    _f = _registered_mcp_functions[0]
+    if asyncio.iscoroutinefunction(_f):
+        mcp.handle_message = _f  # type: ignore
+    else:
+        async def _wrap(text: str, _f=_f) -> str:
+            return _f(text)
+        mcp.handle_message = _wrap  # type: ignore
 
 if __name__ == "__main__":
-	# Run the server (the user requested this exact snippet at the bottom)
-	mcp.run(transport="sse")
+    mcp.run(transport="sse")
