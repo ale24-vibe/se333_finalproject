@@ -16,13 +16,13 @@ Quick start
 	or explicitly:
 	pip install fastapi uvicorn httpx fastmcp mcp[cli]
 
-3. Run the server:
+3. Run the server (uses `server.py` compat runner):
 
-	python server.py
+	/Users/alexle/SE Final Project/.venv/bin/python /Users/alexle/SE Final Project/server.py
 
-4. In VS Code: Press Ctrl+Shift+P → MCP: Add Server and paste the server URL (e.g. http://127.0.0.1:8000/mcp or http://127.0.0.1:8000). Give it a name and press Enter.
+4. In VS Code: Press Ctrl+Shift+P → MCP: Add Server and paste the server URL (e.g. http://127.0.0.1:8001/mcp). Give it a name and press Enter.
 
-5. Test in the Chat view: "what is 1+2" should return the correct result.
+5. Test in the Chat view: example prompts shown below.
 
 Discovery and named tools
 
@@ -44,7 +44,7 @@ The server logs initialize and MCP requests to the console, so watch the termina
 
 Notes
 
-- The `server.py` prefers `fastmcp` if available, otherwise runs a small FastAPI app that accepts POST JSON payloads at `/mcp` with a `text` field.
-- The calculator is intentionally conservative: it only evaluates expressions containing digits and + - * / ( ) to avoid arbitrary code execution.
+- The server runs a FastAPI app that accepts POST JSON payloads at `/mcp` with a `text` field or JSON-RPC bodies.
+- The calculator evaluates expressions safely (digits and operators only). NLP normalization supports common math words and number words (e.g., "two times three").
 
 # se333_finalproject
