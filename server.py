@@ -24,13 +24,8 @@ def _safe_eval(expr: str) -> str:
         raise ValueError(str(e))
     return str(value)
 
-# Simple tool registry for this lightweight server
-TOOLS: Dict[str, Dict[str, Any]] = {
-    "aple_calculator": {
-        "doc": "Simple calculator tool that evaluates numeric expressions from 'text'",
-        "func": lambda text: _safe_eval(re.search(r"what is (.+)", text, re.I).group(1) if re.search(r"what is (.+)", text, re.I) else text)
-    }
-}
+# No registered tools by default. This server runs minimally and does not expose tools.
+TOOLS: Dict[str, Dict[str, Any]] = {}
 
 @app.get("/")
 async def sse_root():
@@ -53,7 +48,8 @@ async def health():
 
 @app.get("/tools")
 async def tools_list():
-    return {"tools": [{"name": name, "doc": info.get("doc", "")} for name, info in TOOLS.items()]}
+    # Return empty list when no tools are registered to avoid advertising internal helpers.
+    return {"tools": []}
 
 def _make_rpc_response(req_body: Dict[str, Any], result_obj: Any) -> Any:
     if isinstance(req_body, dict) and req_body.get("jsonrpc") and "id" in req_body:
@@ -122,14 +118,15 @@ async def mcp_endpoint(request: Request):
 
     # JSON-RPC initialize
     if isinstance(body, dict) and body.get("method") == "initialize":
+        # Advertise only neutral server capabilities; do not expose any tool names.
         res = {
             "status": "initialized",
             "tool_name": "se333_server",
             "version": "1.0",
-            "description": "Minimal calculator tool for MCP-compatible clients",
-            "capabilities": ["calculate", "evaluate expressions"],
+            "description": "Minimal MCP-compatible server",
+            "capabilities": [],
             "transport": "sse",
-            "tools": [{"name": name, "doc": info.get("doc", "")} for name, info in TOOLS.items()]
+            "tools": []
         }
         return JSONResponse(_make_rpc_response(body, res))
 
@@ -159,25 +156,12 @@ async def mcp_endpoint(request: Request):
         # Non-RPC clients: return a 200 with an error inside the result envelope.
         return JSONResponse(_make_rpc_response(body, {"error": "no text provided"}), status_code=200)
 
-    # Dispatch to named tool if provided
-    if tool:
-        if tool not in TOOLS:
-            return JSONResponse(_make_rpc_response(body, {"error": "tool not found"}), status_code=404)
-        func = TOOLS[tool]["func"]
-        try:
-            result = func(text)
-        except Exception as e:
-            # Return an RPC-style error but keep HTTP 200 to avoid transport errors
-            return JSONResponse(_make_rpc_response(body, {"error": str(e)}), status_code=200)
-        # Return a plain assistant-style answer (string/number) inside the result envelope
-        return JSONResponse(_make_rpc_response(body, result))
-
-    # Default: use aple_calculator
-    try:
-        result = TOOLS["aple_calculator"]["func"](text)
-    except Exception as e:
-        return JSONResponse(_make_rpc_response(body, {"error": str(e)}), status_code=200)
-    return JSONResponse(_make_rpc_response(body, result))
+    # This server no longer dispatches to internal tools. Return helpful error/result.
+    msg = {
+        "error": "no tools available",
+        "hint": "This server does not expose any tools. Start a different server or re-enable tools in server.py."
+    }
+    return JSONResponse(_make_rpc_response(body, msg), status_code=200)
 
 if __name__ == "__main__":
     # Bind to localhost and port 8001 to match the configured MCP server URL.

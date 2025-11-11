@@ -39,9 +39,7 @@ Quick start
 
 		curl -s http://127.0.0.1:8001/tools | jq
 
-	- You can dispatch to a specific tool by including a "tool" field in the POST payload to /mcp. Example:
-
-		curl -s -X POST http://127.0.0.1:8001/mcp -H 'Content-Type: application/json' -d '{"tool":"aple_calculator","text":"what is 1+2"}' | jq
+	- This server does not expose named tools by default. Use the generic `/mcp` endpoint for transport-level testing.
 
 	VS Code launch
 
