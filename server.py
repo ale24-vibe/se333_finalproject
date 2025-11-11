@@ -15,16 +15,6 @@ import json
 import asyncio
 from typing import Any
 
-# Support a decorator-style registration used by some MCP examples:
-#
-#   @mcp
-#   def my_tool(text: str) -> str:
-#       return "..."
-#
-#When used, the decorated function(s) are collected in a module-level
-#registry and, if the fallback SimpleMCP is used, the first registered
-#function will be installed as the instance's `handle_message` callable.
-#This makes code that uses an `@mcp` decorator work in the fallback.
 _registered_mcp_functions: list = []
 def mcp(func=None):
 	"""Decorator (or direct call) to register a function for MCP handling.
