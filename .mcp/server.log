@@ -1,0 +1,29 @@
+
+
+        ╭──────────────────────────────────────────────────────────────────────────────╮        
+        │                                                                              │        
+        │                         ▄▀▀ ▄▀█ █▀▀ ▀█▀ █▀▄▀█ █▀▀ █▀█                        │        
+        │                         █▀  █▀█ ▄▄█  █  █ ▀ █ █▄▄ █▀▀                        │        
+        │                                                                              │        
+        │                               FastMCP 2.13.0.2                               │        
+        │                                                                              │        
+        │                                                                              │        
+        │                  🖥  Server name: Calculator MCP Server                       │        
+        │                                                                              │        
+        │                  📦 Transport:   SSE                                         │        
+        │                  🔗 Server URL:  http://127.0.0.1:8001/sse                   │        
+        │                                                                              │        
+        │                  📚 Docs:        https://gofastmcp.com                       │        
+        │                  🚀 Hosting:     https://fastmcp.cloud                       │        
+        │                                                                              │        
+        ╰──────────────────────────────────────────────────────────────────────────────╯        
+
+
+[11/12/25 13:22:27] INFO     Starting MCP server 'Calculator MCP Server' with     server.py:2050
+                             transport 'sse' on http://127.0.0.1:8001/sse                       
+INFO:     Started server process [55611]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 48] error while attempting to bind on address ('127.0.0.1', 8001): [errno 48] address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.

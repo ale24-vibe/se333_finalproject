@@ -38,16 +38,29 @@
                 <version>0.8.8</version>
                 <executions>
                     <execution>
+                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <destFile>${project.build.directory}/jacoco.exec</destFile>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>report</id>
-                        <phase>test</phase>
+                        <phase>verify</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
+                        <configuration>
+                            <dataFile>${project.build.directory}/jacoco.exec</dataFile>
+                            <outputDirectory>${project.build.directory}/jacoco-report</outputDirectory>
+                            <reports>
+                                <xml>true</xml>
+                                <html>true</html>
+                            </reports>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
