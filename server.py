@@ -4,6 +4,7 @@ import shlex
 import signal
 import sys
 import time
+import threading
 
 # Create MCP instance
 mcp = FastMCP("Calculator MCP Server")
@@ -88,6 +89,53 @@ if __name__ == "__main__":
     # register signal handlers for clean shutdown
     signal.signal(signal.SIGINT, _graceful_shutdown)
     signal.signal(signal.SIGTERM, _graceful_shutdown)
+    # Ask whether to run Maven tests after starting the server
+    try:
+        resp = input("Start server first, then run 'mvn -U clean test'? [y/N]: ").strip().lower()
+    except (EOFError, KeyboardInterrupt):
+        resp = "n"
+    run_maven = resp in ("y", "yes")
+    run_in_background = False
+    if run_maven:
+        try:
+            bg = input("Run Maven in background (non-blocking)? [y/N]: ").strip().lower()
+        except (EOFError, KeyboardInterrupt):
+            bg = "n"
+        run_in_background = bg in ("y", "yes")
+
+    # Start the MCP server in a background thread so we can run mvn after it starts
+    def _run_server():
+        try:
+            mcp.run(transport="sse", host="127.0.0.1", port=8001)
+        except Exception:
+            # if server stops due to an exception, print and exit thread
+            print("ApleTest server stopped with an exception.")
+
+    server_thread = threading.Thread(target=_run_server, name="ApleTestServerThread", daemon=True)
+    server_thread.start()
+    print("ApleTest server started (thread: ApleTestServerThread).")
+
+    # Optionally run Maven tests now
+    if run_maven:
+        if run_in_background:
+            try:
+                subprocess.Popen(["mvn", "-U", "clean", "test"], stdout=None, stderr=None)
+                print("Maven started in background.")
+            except Exception as e:
+                print(f"Failed to start Maven in background: {e}")
+        else:
+            try:
+                print("Running mvn -U clean test (foreground, streaming output)...")
+                subprocess.run(["mvn", "-U", "clean", "test"], check=False)
+            except Exception as e:
+                print(f"Error running mvn: {e}")
+
+    # Wait for server thread to finish (server runs until interrupted)
+    try:
+        while server_thread.is_alive():
+            server_thread.join(timeout=1.0)
+    except KeyboardInterrupt:
+        _graceful_shutdown()
     try:
         mcp.run(transport="sse", host="127.0.0.1", port=8001)
     except KeyboardInterrupt:
