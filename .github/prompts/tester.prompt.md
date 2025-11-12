@@ -2,7 +2,7 @@
 mode: "agent"
 tools: ["add", "subtract", "multiply", "divide"]
 description: "Simple calculator MCP tools for performing arithmetic operations"
-model: 'Gpt-5 mini'
+model: 'GPT-5 mini'
 ---
 ## Follow instruction below: ##
 1. Use the provided MCP tools (`add`, `subtract`, `multiply`, `divide`) to perform all arithmetic tasks requested by the user.
