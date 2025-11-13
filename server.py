@@ -5,6 +5,7 @@ import signal
 import sys
 import time
 import threading
+from git_tools import GitAutomation, WorkflowIntegration, GitStatus
 
 # Create MCP instance
 mcp = FastMCP("Calculator MCP Server")
@@ -53,6 +54,186 @@ def analyze_coverage() -> str:
     p = subprocess.run(cmd, capture_output=True, text=True)
     out = p.stdout + "\n" + p.stderr
     return out.strip()
+
+
+# ============================================================================
+# GIT AUTOMATION TOOLS
+# ============================================================================
+
+# Initialize git tools
+git_automation = GitAutomation(".")
+workflow = WorkflowIntegration(".")
+
+
+@mcp.tool(description="Get current git repository status")
+def git_status() -> dict:
+    """
+    Return git status including staged/unstaged changes and conflicts.
+    
+    Returns a dict with:
+    - is_clean: Whether repo is clean
+    - staged_files: List of staged changes
+    - unstaged_files: List of unstaged changes
+    - conflicts: List of conflicted files
+    - current_branch: Current branch name
+    - untracked_files: List of untracked files
+    """
+    try:
+        status = git_automation.git_status()
+        return {
+            "success": True,
+            "is_clean": status.is_clean,
+            "staged_files": status.staged_files,
+            "unstaged_files": status.unstaged_files,
+            "conflicts": status.conflicts,
+            "current_branch": status.current_branch,
+            "untracked_files": status.untracked_files,
+            "message": "Repository is clean" if status.is_clean else "Repository has changes"
+        }
+    except Exception as e:
+        return {
+            "success": False,
+            "message": f"Error getting git status: {str(e)}"
+        }
+
+
+@mcp.tool(description="Stage all changes with intelligent filtering")
+def git_add_all(exclude_patterns: list = None) -> dict:
+    """
+    Stage all changes, excluding build artifacts and temporary files.
+    
+    Args:
+        exclude_patterns: Optional list of glob patterns to exclude
+        
+    Returns a dict with staging result and count of staged files.
+    """
+    try:
+        result = git_automation.git_add_all(exclude_patterns)
+        return result
+    except Exception as e:
+        return {
+            "success": False,
+            "message": f"Error staging changes: {str(e)}"
+        }
+
+
+@mcp.tool(description="Commit staged changes with optional coverage statistics")
+def git_commit(message: str, coverage_stats: dict = None) -> dict:
+    """
+    Commit staged changes with standardized message and optional coverage stats.
+    
+    Args:
+        message: Commit message
+        coverage_stats: Optional dict of coverage statistics to include
+        
+    Returns a dict with commit result, hash, and success status.
+    """
+    try:
+        result = git_automation.git_commit(message, coverage_stats)
+        return {
+            "success": result.success,
+            "message": result.message,
+            "commit_hash": result.commit_hash
+        }
+    except Exception as e:
+        return {
+            "success": False,
+            "message": f"Error committing: {str(e)}"
+        }
+
+
+@mcp.tool(description="Push commits to remote with upstream configuration")
+def git_push(remote: str = "origin", branch: str = None) -> dict:
+    """
+    Push commits to remote repository.
+    
+    Args:
+        remote: Remote name (default: origin)
+        branch: Branch to push (default: current branch)
+        
+    Returns a dict with push result and success status.
+    """
+    try:
+        result = git_automation.git_push(remote, branch)
+        return result
+    except Exception as e:
+        return {
+            "success": False,
+            "message": f"Error pushing: {str(e)}"
+        }
+
+
+@mcp.tool(description="Create a pull request on GitHub")
+def git_pull_request(
+    base: str = "main",
+    title: str = None,
+    body: str = None,
+    coverage_stats: dict = None
+) -> dict:
+    """
+    Create a pull request against the specified base branch.
+    Requires GitHub CLI (gh) to be installed and authenticated.
+    
+    Args:
+        base: Base branch for PR (default: main)
+        title: PR title (auto-generated if not provided)
+        body: PR description
+        coverage_stats: Optional coverage statistics to include
+        
+    Returns a dict with PR URL, number, and success status.
+    """
+    try:
+        result = git_automation.git_pull_request(base, title, body, coverage_stats)
+        return {
+            "success": result.success,
+            "message": result.message,
+            "pr_url": result.pr_url,
+            "pr_number": result.pr_number
+        }
+    except Exception as e:
+        return {
+            "success": False,
+            "message": f"Error creating PR: {str(e)}"
+        }
+
+
+@mcp.tool(description="Execute full automated workflow: stage → commit → push → optional PR")
+def automated_workflow(
+    commit_message: str,
+    push_remote: str = "origin",
+    create_pr: bool = False,
+    pr_base: str = "main",
+    pr_title: str = None,
+    coverage_stats: dict = None
+) -> dict:
+    """
+    Execute full automated git workflow in sequence.
+    
+    Args:
+        commit_message: Message for the commit
+        push_remote: Remote to push to (default: origin)
+        create_pr: Whether to create a PR after push
+        pr_base: Base branch for PR (default: main)
+        pr_title: Title for PR (auto-generated if not provided)
+        coverage_stats: Optional coverage statistics
+        
+    Returns a dict with results of each workflow step.
+    """
+    try:
+        result = workflow.automated_workflow(
+            commit_message,
+            push_remote,
+            create_pr,
+            pr_base,
+            pr_title,
+            coverage_stats
+        )
+        return {"success": True, "workflow_steps": result}
+    except Exception as e:
+        return {
+            "success": False,
+            "message": f"Error in workflow: {str(e)}"
+        }
 
 
 def _graceful_shutdown(signum=None, frame=None):
