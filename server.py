@@ -234,7 +234,67 @@ def automated_workflow(
             "success": False,
             "message": f"Error in workflow: {str(e)}"
         }
+    
+@mcp.tool(description="Create a trivial change, commit, and optionally push")
+def create_and_commit(
+    message: str = "chore: automated test commit",
+    file_path: str = ".autocommit",
+    content: str = None,
+    push: bool = True,
+    push_remote: str = "origin",
+    create_branch: str = None
+) -> dict:
+    """
+    Create or append a small change to `file_path`, stage, commit, and optionally push.
+    - `content`: optional string to write; if None, a timestamped line is appended.
+    - `push`: whether to run git_push after commit.
+    - `create_branch`: optional branch name to create and switch to before making changes.
+    Returns a dict with step results.
+    """
+    import datetime
+    from pathlib import Path
 
+    try:
+        # Optionally create/check out a feature branch
+        if create_branch:
+            # Try to create branch; if already exists, checkout it
+            rc, out, err = git_automation._run_git(["checkout", "-b", create_branch])
+            if rc != 0:
+                git_automation._run_git(["checkout", create_branch])
+
+        # Prepare content
+        if content is None:
+            content = f"autocommit: {datetime.datetime.utcnow().isoformat()}\n"
+
+        # Write/append to file
+        p = Path(file_path)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        with p.open("a", encoding="utf-8") as f:
+            f.write(content)
+
+        # Stage changes
+        stage_result = git_add_all()
+        if not stage_result.get("success", False):
+            return {"success": False, "step": "stage", "detail": stage_result}
+
+        # Commit
+        commit_result = git_commit(message)
+        if not commit_result.get("success", False):
+            return {"success": False, "step": "commit", "detail": commit_result}
+
+        result = {"success": True, "stage": stage_result, "commit": commit_result}
+
+        # Push (optional)
+        if push:
+            push_result = git_push(push_remote)
+            result["push"] = push_result
+            if not push_result.get("success", False):
+                result["push_failed"] = True
+
+        return result
+
+    except Exception as e:
+        return {"success": False, "error": str(e)}
 
 def _graceful_shutdown(signum=None, frame=None):
     """Attempt to shut down the MCP server cleanly.
