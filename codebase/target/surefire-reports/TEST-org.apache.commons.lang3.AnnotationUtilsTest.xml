@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="10" failures="0" name="org.apache.commons.lang3.AnnotationUtilsTest" time="0.119" errors="0" skipped="0">
+<testsuite tests="10" failures="0" name="org.apache.commons.lang3.AnnotationUtilsTest" time="0.073" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="24.0.1+9-30"/>
@@ -41,12 +41,13 @@
     <property name="user.timezone" value="America/Chicago"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="24"/>
+    <property name="trimStackTrace" value="false"/>
     <property name="user.name" value="djrag"/>
     <property name="java.class.path" value="C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9\boot\plexus-classworlds-2.8.0.jar"/>
     <property name="skipITs" value="true"/>
     <property name="java.vm.specification.version" value="24"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f codebase/pom.xml -U -DskipITs=true test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f codebase/pom.xml -DskipITs=true -U test -DtrimStackTrace=false"/>
     <property name="java.home" value="C:\Users\djrag\.jdks\openjdk-24.0.1"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -62,14 +63,14 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testOneArgNull" time="0.031"/>
-  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testToString" time="0.018"/>
-  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testSameInstance" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testEquivalence" time="0.031"/>
-  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testAnnotationsOfDifferingTypes" time="0.004"/>
-  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testHashCode" time="0.004"/>
-  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testGeneratedAnnotationEquivalentToRealAnnotation" time="0.027"/>
+  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testOneArgNull" time="0.017"/>
+  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testToString" time="0.014"/>
+  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testSameInstance" time="0"/>
+  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testEquivalence" time="0.028"/>
+  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testAnnotationsOfDifferingTypes" time="0"/>
+  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testHashCode" time="0.005"/>
+  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testGeneratedAnnotationEquivalentToRealAnnotation" time="0.005"/>
   <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testBothArgsNull" time="0"/>
   <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testNonEquivalentAnnotationsOfSameType" time="0.002"/>
-  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testIsValidAnnotationMemberType" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.AnnotationUtilsTest" name="testIsValidAnnotationMemberType" time="0.002"/>
 </testsuite>

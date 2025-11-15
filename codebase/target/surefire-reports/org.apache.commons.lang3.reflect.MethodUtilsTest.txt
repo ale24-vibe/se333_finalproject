@@ -1,15 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.apache.commons.lang3.reflect.MethodUtilsTest
 -------------------------------------------------------------------------------
-Tests run: 13, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.142 sec <<< FAILURE!
-testGetMatchingAccessibleMethod(org.apache.commons.lang3.reflect.MethodUtilsTest)  Time elapsed: 0.067 sec  <<< ERROR!
-java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
-	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
-	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
-	at org.apache.commons.lang3.reflect.MemberUtils.getObjectTransformationCost(MemberUtils.java:137)
-	at org.apache.commons.lang3.reflect.MemberUtils.getTotalTransformationCost(MemberUtils.java:118)
-	at org.apache.commons.lang3.reflect.MemberUtils.compareParameterTypes(MemberUtils.java:101)
-	at org.apache.commons.lang3.reflect.MethodUtils.getMatchingAccessibleMethod(MethodUtils.java:508)
-	at org.apache.commons.lang3.reflect.MethodUtilsTest.expectMatchingAccessibleMethodParameterTypes(MethodUtilsTest.java:382)
-	at org.apache.commons.lang3.reflect.MethodUtilsTest.testGetMatchingAccessibleMethod(MethodUtilsTest.java:370)
-
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.111 sec

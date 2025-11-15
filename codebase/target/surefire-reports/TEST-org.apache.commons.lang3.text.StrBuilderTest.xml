@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="79" failures="0" name="org.apache.commons.lang3.text.StrBuilderTest" time="0.02" errors="0" skipped="0">
+<testsuite tests="79" failures="0" name="org.apache.commons.lang3.text.StrBuilderTest" time="0.029" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="24.0.1+9-30"/>
@@ -41,12 +41,13 @@
     <property name="user.timezone" value="America/Chicago"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="24"/>
+    <property name="trimStackTrace" value="false"/>
     <property name="user.name" value="djrag"/>
     <property name="java.class.path" value="C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9\boot\plexus-classworlds-2.8.0.jar"/>
     <property name="skipITs" value="true"/>
     <property name="java.vm.specification.version" value="24"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f codebase/pom.xml -U -DskipITs=true test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f codebase/pom.xml -DskipITs=true -U test -DtrimStackTrace=false"/>
     <property name="java.home" value="C:\Users\djrag\.jdks\openjdk-24.0.1"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -64,80 +65,80 @@
   </properties>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testAsTokenizer" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testDeleteFirst_StrMatcher" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplaceFirst_StrMatcher_String" time="0"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplaceFirst_StrMatcher_String" time="0.002"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testDeleteAll_String" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testEndsWith" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testGetSetNullText" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testIndexOfLang294" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testSubSequenceIntInt" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testGetChars" time="0"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testIndexOfLang294" time="0"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testSubSequenceIntInt" time="0.002"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testGetChars" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLastIndexOf_String" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testDeleteAll_char" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplace_StrMatcher_String_int_int_int_VaryEndIndex" time="0.002"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLastIndexOf_char_int" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testClear" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testSize" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testTrim" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testRightString" time="0.003"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testSize" time="0"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testTrim" time="0"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testRightString" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testToString" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testConstructors" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testConstructors" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testMinimizeCapacity" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testSubstringIntInt" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLang412Left" time="0"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLang412Left" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testContains_String" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testEqualsIgnoreCase" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testEqualsIgnoreCase" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testCapacityAndLength" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testAsReader" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testToStringBuilder" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplaceAll_String_String" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testAsReader" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testToStringBuilder" time="0.004"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplaceAll_String_String" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testAsWriter" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLang294" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLang295" time="0"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLang295" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplaceAll_char_char" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLastIndexOf_String_int" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testDeleteCharAt" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplaceFirst_String_String" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testContains_char" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testDeleteIntInt" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testDeleteIntInt" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplace_StrMatcher_String_int_int_int_VaryCount" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplaceFirst_char_char" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testIndexOf_char" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplace_int_int_String" time="0"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplace_int_int_String" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testToCharArray" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLastIndexOf_StrMatcher" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testIndexOf_StrMatcher_int" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLastIndexOf_StrMatcher" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testIndexOf_StrMatcher_int" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testEnsureCapacity" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLang412Right" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testDeleteFirst_String" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testMidString" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplaceAll_StrMatcher_String" time="0"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLang412Right" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testDeleteFirst_String" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testMidString" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplaceAll_StrMatcher_String" time="0.002"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testCapacity" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReverse" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testSetCharAt" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testSetCharAt" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplace_StrMatcher_String_int_int_int_VaryStartIndex" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testHashCode" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testSubstringInt" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testSetLength" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testCharAt" time="0"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testHashCode" time="0.002"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testSubstringInt" time="0"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testSetLength" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testCharAt" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplace_StrMatcher_String_int_int_int_VaryMatcher" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testEquals" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLastIndexOf_char" time="0"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLastIndexOf_char" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLeftString" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testIndexOf_String_int" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testContains_StrMatcher" time="0.002"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testIndexOf_String_int" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testContains_StrMatcher" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLength" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testReplace_StrMatcher_String_int_int_int_VaryReplace" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testDeleteFirst_char" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testDeleteAll_StrMatcher" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testIsEmpty" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testToCharArrayIntInt" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testGetSetNewLineText" time="0"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testGetSetNewLineText" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testToStringBuffer" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testAsBuilder" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testIndexOf_String" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testIndexOf_char_int" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testIndexOf_char_int" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testGetCharsIntIntCharArrayInt" time="0"/>
-  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testStartsWith" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testStartsWith" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testIndexOf_StrMatcher" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testLastIndexOf_StrMatcher_int" time="0"/>
   <testcase classname="org.apache.commons.lang3.text.StrBuilderTest" name="testChaining" time="0"/>

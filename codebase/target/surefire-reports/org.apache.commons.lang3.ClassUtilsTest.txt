@@ -1,27 +1,37 @@
 -------------------------------------------------------------------------------
 Test set: org.apache.commons.lang3.ClassUtilsTest
 -------------------------------------------------------------------------------
-Tests run: 51, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.338 sec <<< FAILURE!
-test_isAssignable(org.apache.commons.lang3.ClassUtilsTest)  Time elapsed: 0.001 sec  <<< ERROR!
-java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
-	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
-	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
-	at org.apache.commons.lang3.ClassUtilsTest.test_isAssignable(ClassUtilsTest.java:425)
-
-test_isAssignable_Widening(org.apache.commons.lang3.ClassUtilsTest)  Time elapsed: 0.001 sec  <<< ERROR!
-java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
-	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
-	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
-	at org.apache.commons.lang3.ClassUtilsTest.test_isAssignable_Widening(ClassUtilsTest.java:502)
-
-test_isAssignable_DefaultUnboxing_Widening(org.apache.commons.lang3.ClassUtilsTest)  Time elapsed: 0 sec  <<< ERROR!
-java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
-	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
-	at org.apache.commons.lang3.ClassUtilsTest.test_isAssignable_DefaultUnboxing_Widening(ClassUtilsTest.java:584)
-
-test_isAssignable_ClassArray_ClassArray(org.apache.commons.lang3.ClassUtilsTest)  Time elapsed: 0.001 sec  <<< ERROR!
-java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
-	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
-	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:470)
-	at org.apache.commons.lang3.ClassUtilsTest.test_isAssignable_ClassArray_ClassArray(ClassUtilsTest.java:345)
+Tests run: 51, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.195 sec <<< FAILURE!
+test_isAssignable(org.apache.commons.lang3.ClassUtilsTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<false> but was:<true>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at org.apache.commons.lang3.ClassUtilsTest.test_isAssignable(ClassUtilsTest.java:440)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95)
 

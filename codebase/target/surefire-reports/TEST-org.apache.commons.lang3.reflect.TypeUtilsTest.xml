@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="11" failures="0" name="org.apache.commons.lang3.reflect.TypeUtilsTest" time="0.072" errors="6" skipped="0">
+<testsuite tests="11" failures="1" name="org.apache.commons.lang3.reflect.TypeUtilsTest" time="0.114" errors="1" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="24.0.1+9-30"/>
@@ -41,12 +41,13 @@
     <property name="user.timezone" value="America/Chicago"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="24"/>
+    <property name="trimStackTrace" value="false"/>
     <property name="user.name" value="djrag"/>
     <property name="java.class.path" value="C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9\boot\plexus-classworlds-2.8.0.jar"/>
     <property name="skipITs" value="true"/>
     <property name="java.vm.specification.version" value="24"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f codebase/pom.xml -U -DskipITs=true test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f codebase/pom.xml -DskipITs=true -U test -DtrimStackTrace=false"/>
     <property name="java.home" value="C:\Users\djrag\.jdks\openjdk-24.0.1"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -62,82 +63,76 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testGetTypeArguments" time="0.003">
-    <error message="Cannot invoke &quot;org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)&quot; because &quot;org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)&quot; because &quot;org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM&quot; is null
-	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
-	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:131)
-	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:653)
-	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:548)
-	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:534)
-	at org.apache.commons.lang3.reflect.TypeUtilsTest.testGetTypeArguments(TypeUtilsTest.java:477)
+  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testGetTypeArguments" time="0.011">
+    <error message="Cannot invoke &quot;java.util.Map.containsKey(Object)&quot; because &quot;typeVarAssigns&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;java.util.Map.containsKey(Object)&quot; because &quot;typeVarAssigns&quot; is null
+	at org.apache.commons.lang3.reflect.TypeUtilsTest.testGetTypeArguments(TypeUtilsTest.java:488)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95)
 </error>
   </testcase>
-  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testIsInstance" time="0.004">
-    <error message="Cannot invoke &quot;org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)&quot; because &quot;org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)&quot; because &quot;org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM&quot; is null
-	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
-	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:131)
-	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:653)
-	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:548)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:200)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:84)
-	at org.apache.commons.lang3.reflect.TypeUtils.isInstance(TypeUtils.java:851)
-	at org.apache.commons.lang3.reflect.TypeUtilsTest.testIsInstance(TypeUtilsTest.java:466)
-</error>
-  </testcase>
+  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testIsInstance" time="0.002"/>
   <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testLang820" time="0"/>
-  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testIsAssignable" time="0.023">
-    <error message="Cannot invoke &quot;org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)&quot; because &quot;org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)&quot; because &quot;org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM&quot; is null
-	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
-	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:131)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:80)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:397)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:92)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:228)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:84)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:65)
-	at org.apache.commons.lang3.reflect.TypeUtilsTest.delegateBooleanAssertion(TypeUtilsTest.java:447)
-	at org.apache.commons.lang3.reflect.TypeUtilsTest.testIsAssignable(TypeUtilsTest.java:170)
-</error>
+  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testIsAssignable" time="0.057">
+    <failure type="java.lang.AssertionError">java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:86)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertTrue(Assert.java:52)
+	at org.apache.commons.lang3.reflect.TypeUtilsTest.testIsAssignable(TypeUtilsTest.java:379)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95)
+</failure>
   </testcase>
-  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testGetPrimitiveArrayComponentType" time="0"/>
-  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testTypesSatisfyVariables" time="0.001">
-    <error message="Cannot invoke &quot;org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)&quot; because &quot;org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)&quot; because &quot;org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM&quot; is null
-	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
-	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:131)
-	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:653)
-	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:548)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:200)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:84)
-	at org.apache.commons.lang3.reflect.TypeUtils.typesSatisfyVariables(TypeUtils.java:968)
-	at org.apache.commons.lang3.reflect.TypeUtilsTest.testTypesSatisfyVariables(TypeUtilsTest.java:526)
-</error>
-  </testcase>
+  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testGetPrimitiveArrayComponentType" time="0.002"/>
+  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testTypesSatisfyVariables" time="0.002"/>
   <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testIsArrayTypeClasses" time="0"/>
-  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testDetermineTypeVariableAssignments" time="0.001">
-    <error message="Cannot invoke &quot;org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)&quot; because &quot;org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)&quot; because &quot;org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM&quot; is null
-	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
-	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:131)
-	at org.apache.commons.lang3.reflect.TypeUtils.determineTypeArguments(TypeUtils.java:715)
-	at org.apache.commons.lang3.reflect.TypeUtilsTest.testDetermineTypeVariableAssignments(TypeUtilsTest.java:540)
-</error>
-  </testcase>
-  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testGetRawType" time="0.04">
-    <error message="Cannot invoke &quot;org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)&quot; because &quot;org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)&quot; because &quot;org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM&quot; is null
-	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
-	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
-	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:131)
-	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:653)
-	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:548)
-	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:534)
-	at org.apache.commons.lang3.reflect.TypeUtils.getRawType(TypeUtils.java:1039)
-	at org.apache.commons.lang3.reflect.TypeUtilsTest.testGetRawType(TypeUtilsTest.java:561)
-</error>
-  </testcase>
+  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testDetermineTypeVariableAssignments" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testGetRawType" time="0.038"/>
   <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testGetArrayComponentType" time="0"/>
-  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testIsArrayGenericTypes" time="0"/>
+  <testcase classname="org.apache.commons.lang3.reflect.TypeUtilsTest" name="testIsArrayGenericTypes" time="0.001"/>
 </testsuite>
