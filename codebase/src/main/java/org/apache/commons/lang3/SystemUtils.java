@@ -1385,7 +1385,11 @@ public class SystemUtils {
      * @return {@code true} if the actual version is equal or greater than the required version
      */
     public static boolean isJavaVersionAtLeast(final JavaVersion requiredVersion) {
-        return JAVA_SPECIFICATION_VERSION_AS_ENUM.atLeast(requiredVersion);
+        // JAVA_SPECIFICATION_VERSION_AS_ENUM can be null for unknown/newer Java versions
+        // (e.g., runtime reports "11" or "17"). Make this check null-safe and
+        // return false when the runtime Java version cannot be mapped to the
+        // known JavaVersion enum constants.
+        return JAVA_SPECIFICATION_VERSION_AS_ENUM != null && JAVA_SPECIFICATION_VERSION_AS_ENUM.atLeast(requiredVersion);
     }
 
     /**

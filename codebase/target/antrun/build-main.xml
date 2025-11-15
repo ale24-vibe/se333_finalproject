@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <copy todir="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject\codebase\target/apidocs/META-INF">
+    <fileset dir="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject\codebase">
+      <include name="LICENSE.txt"/>
+      <include name="NOTICE.txt"/>
+    </fileset>
+  </copy>
+</target>
+</project>

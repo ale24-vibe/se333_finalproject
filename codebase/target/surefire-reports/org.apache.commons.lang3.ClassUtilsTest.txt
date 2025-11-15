@@ -1,0 +1,27 @@
+-------------------------------------------------------------------------------
+Test set: org.apache.commons.lang3.ClassUtilsTest
+-------------------------------------------------------------------------------
+Tests run: 51, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.338 sec <<< FAILURE!
+test_isAssignable(org.apache.commons.lang3.ClassUtilsTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
+	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
+	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
+	at org.apache.commons.lang3.ClassUtilsTest.test_isAssignable(ClassUtilsTest.java:425)
+
+test_isAssignable_Widening(org.apache.commons.lang3.ClassUtilsTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
+	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
+	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
+	at org.apache.commons.lang3.ClassUtilsTest.test_isAssignable_Widening(ClassUtilsTest.java:502)
+
+test_isAssignable_DefaultUnboxing_Widening(org.apache.commons.lang3.ClassUtilsTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
+	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
+	at org.apache.commons.lang3.ClassUtilsTest.test_isAssignable_DefaultUnboxing_Widening(ClassUtilsTest.java:584)
+
+test_isAssignable_ClassArray_ClassArray(org.apache.commons.lang3.ClassUtilsTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
+	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
+	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:470)
+	at org.apache.commons.lang3.ClassUtilsTest.test_isAssignable_ClassArray_ClassArray(ClassUtilsTest.java:345)
+

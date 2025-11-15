@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+Test set: org.apache.commons.lang3.CharEncodingTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.031 sec <<< FAILURE!
+testMustBeSupportedJava1_3_1(org.apache.commons.lang3.CharEncodingTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
+	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
+	at org.apache.commons.lang3.CharEncodingTest.testMustBeSupportedJava1_3_1(CharEncodingTest.java:50)
+
+testWorksOnJava1_1_8(org.apache.commons.lang3.CharEncodingTest)  Time elapsed: 0.002 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
+	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
+	at org.apache.commons.lang3.CharEncodingTest.testWorksOnJava1_1_8(CharEncodingTest.java:85)
+
+testWorksOnJava1_2_2(org.apache.commons.lang3.CharEncodingTest)  Time elapsed: 0.003 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
+	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
+	at org.apache.commons.lang3.CharEncodingTest.testWorksOnJava1_2_2(CharEncodingTest.java:100)
+

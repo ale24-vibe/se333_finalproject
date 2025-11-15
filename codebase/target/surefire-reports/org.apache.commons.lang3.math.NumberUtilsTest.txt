@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+Test set: org.apache.commons.lang3.math.NumberUtilsTest
+-------------------------------------------------------------------------------
+Tests run: 82, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.052 sec <<< FAILURE!
+TestLang747(org.apache.commons.lang3.math.NumberUtilsTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NumberFormatException: For input string: "80000000" under radix 16
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:564)
+	at java.base/java.lang.Integer.decode(Integer.java:1372)
+	at org.apache.commons.lang3.math.NumberUtils.createInteger(NumberUtils.java:684)
+	at org.apache.commons.lang3.math.NumberUtils.createNumber(NumberUtils.java:474)
+	at org.apache.commons.lang3.math.NumberUtilsTest.TestLang747(NumberUtilsTest.java:256)
+

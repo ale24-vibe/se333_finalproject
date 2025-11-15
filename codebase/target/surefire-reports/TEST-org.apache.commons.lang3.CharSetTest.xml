@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="14" failures="0" name="org.apache.commons.lang3.CharSetTest" time="0.01" errors="0" skipped="0">
+  <properties>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="java.vm.version" value="24.0.1+9-30"/>
+    <property name="sun.boot.library.path" value="C:\Users\djrag\.jdks\openjdk-24.0.1\bin"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="path.separator" value=";"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="java.runtime.version" value="24.0.1+9-30"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\djrag\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="stderr.encoding" value="cp437"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="classworlds.conf" value="C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="stdout.encoding" value="cp437"/>
+    <property name="java.library.path" value="C:\Users\djrag\.jdks\openjdk-24.0.1\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;c:\Users\djrag\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\djrag\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Perforce\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9\bin;C:\Users\djrag\.jdks\openjdk-24.0.1\bin;C:\Users\djrag\Downloads\Computerriance\node.js\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Perforce\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9\bin;C:\Users\djrag\.jdks\openjdk-24.0.1\bin;C:\Users\djrag\Downloads\Computerriance\node.js\;C:\Users\djrag\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\Scripts;C:\Users\djrag\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\djrag\Downloads\Computerriance\python;C:\Users\djrag\Downloads\Computerriance\python\Scripts;C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9;C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9\bin;c:\Users\djrag\.vscode\extensions\ms-python.debugpy-2025.16.0-win32-x64\bundled\scripts\noConfigScripts;."/>
+    <property name="maven.conf" value="C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9/conf"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="java.class.version" value="68.0"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="library.jansi.path" value="C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9\lib\jansi-native"/>
+    <property name="user.home" value="C:\Users\djrag"/>
+    <property name="user.timezone" value="America/Chicago"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="24"/>
+    <property name="user.name" value="djrag"/>
+    <property name="java.class.path" value="C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9\boot\plexus-classworlds-2.8.0.jar"/>
+    <property name="skipITs" value="true"/>
+    <property name="java.vm.specification.version" value="24"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f codebase/pom.xml -U -DskipITs=true test"/>
+    <property name="java.home" value="C:\Users\djrag\.jdks\openjdk-24.0.1"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.version" value="24.0.1"/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.version.date" value="2025-04-15"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase classname="org.apache.commons.lang3.CharSetTest" name="testConstructor_String_oddDash" time="0"/>
+  <testcase classname="org.apache.commons.lang3.CharSetTest" name="testSerialization" time="0.006"/>
+  <testcase classname="org.apache.commons.lang3.CharSetTest" name="testClass" time="0"/>
+  <testcase classname="org.apache.commons.lang3.CharSetTest" name="testConstructor_String_simple" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.CharSetTest" name="testEquals_Object" time="0"/>
+  <testcase classname="org.apache.commons.lang3.CharSetTest" name="testContains_Char" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.CharSetTest" name="testConstructor_String_combo" time="0"/>
+  <testcase classname="org.apache.commons.lang3.CharSetTest" name="testConstructor_String_oddCombinations" time="0"/>
+  <testcase classname="org.apache.commons.lang3.CharSetTest" name="testConstructor_String_comboNegated" time="0"/>
+  <testcase classname="org.apache.commons.lang3.CharSetTest" name="testHashCode" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.CharSetTest" name="testGetInstance_Stringarray" time="0"/>
+  <testcase classname="org.apache.commons.lang3.CharSetTest" name="testConstructor_String_oddNegate" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.CharSetTest" name="testGetInstance" time="0"/>
+  <testcase classname="org.apache.commons.lang3.CharSetTest" name="testStatics" time="0"/>
+</testsuite>

@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: org.apache.commons.lang3.LocaleUtilsTest
+-------------------------------------------------------------------------------
+Tests run: 14, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.117 sec <<< FAILURE!
+testToLocale_3Part(org.apache.commons.lang3.LocaleUtilsTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
+	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
+	at org.apache.commons.lang3.LocaleUtilsTest.testToLocale_3Part(LocaleUtilsTest.java:217)
+

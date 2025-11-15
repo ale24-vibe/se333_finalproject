@@ -1,0 +1,71 @@
+-------------------------------------------------------------------------------
+Test set: org.apache.commons.lang3.reflect.TypeUtilsTest
+-------------------------------------------------------------------------------
+Tests run: 11, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 0.172 sec <<< FAILURE!
+testGetTypeArguments(org.apache.commons.lang3.reflect.TypeUtilsTest)  Time elapsed: 0.003 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
+	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
+	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:131)
+	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:653)
+	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:548)
+	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:534)
+	at org.apache.commons.lang3.reflect.TypeUtilsTest.testGetTypeArguments(TypeUtilsTest.java:477)
+
+testIsInstance(org.apache.commons.lang3.reflect.TypeUtilsTest)  Time elapsed: 0.004 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
+	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
+	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:131)
+	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:653)
+	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:548)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:200)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:84)
+	at org.apache.commons.lang3.reflect.TypeUtils.isInstance(TypeUtils.java:851)
+	at org.apache.commons.lang3.reflect.TypeUtilsTest.testIsInstance(TypeUtilsTest.java:466)
+
+testIsAssignable(org.apache.commons.lang3.reflect.TypeUtilsTest)  Time elapsed: 0.023 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
+	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
+	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:131)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:80)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:397)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:92)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:228)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:84)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:65)
+	at org.apache.commons.lang3.reflect.TypeUtilsTest.delegateBooleanAssertion(TypeUtilsTest.java:447)
+	at org.apache.commons.lang3.reflect.TypeUtilsTest.testIsAssignable(TypeUtilsTest.java:170)
+
+testTypesSatisfyVariables(org.apache.commons.lang3.reflect.TypeUtilsTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
+	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
+	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:131)
+	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:653)
+	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:548)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:200)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:84)
+	at org.apache.commons.lang3.reflect.TypeUtils.typesSatisfyVariables(TypeUtils.java:968)
+	at org.apache.commons.lang3.reflect.TypeUtilsTest.testTypesSatisfyVariables(TypeUtilsTest.java:526)
+
+testDetermineTypeVariableAssignments(org.apache.commons.lang3.reflect.TypeUtilsTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
+	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
+	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:131)
+	at org.apache.commons.lang3.reflect.TypeUtils.determineTypeArguments(TypeUtils.java:715)
+	at org.apache.commons.lang3.reflect.TypeUtilsTest.testDetermineTypeVariableAssignments(TypeUtilsTest.java:540)
+
+testGetRawType(org.apache.commons.lang3.reflect.TypeUtilsTest)  Time elapsed: 0.04 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.apache.commons.lang3.JavaVersion.atLeast(org.apache.commons.lang3.JavaVersion)" because "org.apache.commons.lang3.SystemUtils.JAVA_SPECIFICATION_VERSION_AS_ENUM" is null
+	at org.apache.commons.lang3.SystemUtils.isJavaVersionAtLeast(SystemUtils.java:1388)
+	at org.apache.commons.lang3.ClassUtils.isAssignable(ClassUtils.java:586)
+	at org.apache.commons.lang3.reflect.TypeUtils.isAssignable(TypeUtils.java:131)
+	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:653)
+	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:548)
+	at org.apache.commons.lang3.reflect.TypeUtils.getTypeArguments(TypeUtils.java:534)
+	at org.apache.commons.lang3.reflect.TypeUtils.getRawType(TypeUtils.java:1039)
+	at org.apache.commons.lang3.reflect.TypeUtilsTest.testGetRawType(TypeUtilsTest.java:561)
+
