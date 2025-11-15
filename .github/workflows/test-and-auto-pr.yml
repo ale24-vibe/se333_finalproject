@@ -53,13 +53,10 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'chore: automated coverage PR'
+          commit-message: 'chore: automated coverage PR - coverage ${{ steps.analyze.outputs.coverage }} - ${{ github.sha }}'
           title: 'Automated: coverage >= ${{ env.COVERAGE_THRESHOLD }}%'
           body: |
             CI detected coverage >= threshold.
             This PR was opened automatically by CI to record the increase and trigger protected-branch checks.
           branch: auto/coverage-${{ github.sha }}
           base: main
-          changes: |
-            .autocommit: |
-              autocommit: Automated update from CI - coverage ${{ steps.analyze.outputs.coverage }} - ${{ github.sha }}
