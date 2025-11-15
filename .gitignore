@@ -1,0 +1,5 @@
+# Ignore generated coverage/output files
+coverage.json
+coverage-*.json
+target/
+.mcp/*.out
