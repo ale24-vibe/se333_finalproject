@@ -1,6 +1,6 @@
 # Coverage Dashboard
 
-Last recorded run: 2025-11-15T01:47:01-06:00 (run id: `local-1763192820897`)
+Last recorded run: 2025-11-15T02:33:29.326362 (run id: `local-20251115-023329`)
 
 - Command: `mvn -U clean verify`
 - JaCoCo report: `target/jacoco-report/jacoco.xml`
@@ -15,6 +15,12 @@ Notes:
 
 - The coverage analyzer reported no uncovered methods.
 - No additional unit tests required at this time.
+
+Repository state for this run:
+
+- Branch: `auto/ci-improve/coverage-history-update-20251115`
+- Commit: `9d78e59`
+- Analyzer command: `python3 .mcp/coverage_analyzer.py`
 
 If you'd like, I can:
 
