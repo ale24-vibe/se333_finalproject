@@ -1,0 +1,65 @@
+name: Tests + Coverage → Auto PR
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+  workflow_dispatch:
+
+env:
+  COVERAGE_THRESHOLD: 80.0
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Run Maven (tests + verify)
+        run: mvn -U clean verify
+
+      - name: Generate jacoco report (fallback)
+        run: mvn jacoco:report || true
+
+      - name: Run coverage analyzer
+        id: analyze
+        run: |
+          python3 .mcp/coverage_analyzer.py > coverage.json
+          python3 - <<'PY'
+          import json,sys,os
+          j=json.load(open('coverage.json'))
+          cov=j.get('coverage_pct') or j.get('coverage_pct') or j.get('coverage')
+          if cov is None:
+              print('No coverage percent found in analyzer output')
+              sys.exit(1)
+          # export as job output
+          with open(os.environ['GITHUB_OUTPUT'],'a') as fh:
+              fh.write(f"coverage={cov}\n")
+          print('coverage='+str(cov))
+          PY
+
+      - name: Create branch + PR when coverage >= threshold
+        if: ${{ steps.analyze.outputs.coverage && (fromJson(steps.analyze.outputs.coverage) >= env.COVERAGE_THRESHOLD) }}
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: chore: automated coverage PR
+          title: Automated: coverage >= ${{ env.COVERAGE_THRESHOLD }}%
+          body: |
+            CI detected coverage >= threshold.
+            This PR was opened automatically by CI to record the increase and trigger protected-branch checks.
+          branch: auto/coverage-${{ github.sha }}
+          base: main
+          changes: |
+            .autocommit: |
+              autocommit: Automated update from CI - coverage ${{ steps.analyze.outputs.coverage }} - ${{ github.sha }}
