@@ -1,0 +1,14 @@
+[
+  {
+    "timestamp": "2025-11-15T01:47:01-06:00",
+    "run_id": "local-1763192820897",
+    "command": "mvn -U clean verify",
+    "report_path": "target/jacoco-report/jacoco.xml",
+    "coverage": {
+      "line": 100.0,
+      "instruction": 100.0,
+      "branch": 100.0
+    },
+    "notes": "Local test run recorded by tester agent; no uncovered methods reported."
+  }
+]
