@@ -1,0 +1,45 @@
+{
+  "timestamp": "2025-11-15T02:18:49.055284",
+  "report_path": "target/jacoco-report/jacoco.xml",
+  "coverage": {
+    "instruction": 100.0,
+    "branch": 100.0,
+    "line": 100.0,
+    "complexity": 100.0,
+    "method": 100.0,
+    "class": 100.0
+  },
+  "coverage_detail": {
+    "instruction": {
+      "missed": 0,
+      "covered": 22,
+      "percent": 100.0
+    },
+    "branch": {
+      "missed": 0,
+      "covered": 2,
+      "percent": 100.0
+    },
+    "line": {
+      "missed": 0,
+      "covered": 6,
+      "percent": 100.0
+    },
+    "complexity": {
+      "missed": 0,
+      "covered": 5,
+      "percent": 100.0
+    },
+    "method": {
+      "missed": 0,
+      "covered": 4,
+      "percent": 100.0
+    },
+    "class": {
+      "missed": 0,
+      "covered": 1,
+      "percent": 100.0
+    }
+  },
+  "uncovered": []
+}
