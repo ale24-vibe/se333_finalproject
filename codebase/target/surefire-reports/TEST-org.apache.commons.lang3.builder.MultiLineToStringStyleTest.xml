@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="8" failures="0" name="org.apache.commons.lang3.builder.MultiLineToStringStyleTest" time="0.002" errors="0" skipped="0">
+<testsuite tests="8" failures="0" name="org.apache.commons.lang3.builder.MultiLineToStringStyleTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="24.0.1+9-30"/>
     <property name="sun.boot.library.path" value="C:\Users\djrag\.jdks\openjdk-24.0.1\bin"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject\codebase"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject"/>
+    <property name="user.dir" value="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject\codebase"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="java.runtime.version" value="24.0.1+9-30"/>
     <property name="os.arch" value="amd64"/>
@@ -41,13 +41,11 @@
     <property name="user.timezone" value="America/Chicago"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="24"/>
-    <property name="trimStackTrace" value="false"/>
     <property name="user.name" value="djrag"/>
     <property name="java.class.path" value="C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9\boot\plexus-classworlds-2.8.0.jar"/>
-    <property name="skipITs" value="true"/>
     <property name="java.vm.specification.version" value="24"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f codebase/pom.xml -DskipITs=true -U test -DtrimStackTrace=false"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
     <property name="java.home" value="C:\Users\djrag\.jdks\openjdk-24.0.1"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -68,7 +66,7 @@
   <testcase classname="org.apache.commons.lang3.builder.MultiLineToStringStyleTest" name="testLong" time="0"/>
   <testcase classname="org.apache.commons.lang3.builder.MultiLineToStringStyleTest" name="testLongArrayArray" time="0"/>
   <testcase classname="org.apache.commons.lang3.builder.MultiLineToStringStyleTest" name="testLongArray" time="0"/>
-  <testcase classname="org.apache.commons.lang3.builder.MultiLineToStringStyleTest" name="testObject" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.builder.MultiLineToStringStyleTest" name="testObject" time="0"/>
   <testcase classname="org.apache.commons.lang3.builder.MultiLineToStringStyleTest" name="testPerson" time="0"/>
-  <testcase classname="org.apache.commons.lang3.builder.MultiLineToStringStyleTest" name="testAppendSuper" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.builder.MultiLineToStringStyleTest" name="testAppendSuper" time="0"/>
 </testsuite>

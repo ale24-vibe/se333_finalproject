@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="54" failures="0" name="org.apache.commons.lang3.ValidateTest" time="0.022" errors="0" skipped="0">
+<testsuite tests="54" failures="0" name="org.apache.commons.lang3.ValidateTest" time="0.008" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="24.0.1+9-30"/>
     <property name="sun.boot.library.path" value="C:\Users\djrag\.jdks\openjdk-24.0.1\bin"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject\codebase"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject"/>
+    <property name="user.dir" value="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject\codebase"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="java.runtime.version" value="24.0.1+9-30"/>
     <property name="os.arch" value="amd64"/>
@@ -41,13 +41,11 @@
     <property name="user.timezone" value="America/Chicago"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="24"/>
-    <property name="trimStackTrace" value="false"/>
     <property name="user.name" value="djrag"/>
     <property name="java.class.path" value="C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9\boot\plexus-classworlds-2.8.0.jar"/>
-    <property name="skipITs" value="true"/>
     <property name="java.vm.specification.version" value="24"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f codebase/pom.xml -DskipITs=true -U test -DtrimStackTrace=false"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
     <property name="java.home" value="C:\Users\djrag\.jdks\openjdk-24.0.1"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -81,40 +79,40 @@
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotEmptyMap2" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsInstanceOf" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testValidIndex_withMessage_charSequence" time="0"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotBlankBlankStringWithNewlinesShouldThrow" time="0.002"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotBlankBlankStringWithNewlinesShouldThrow" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotBlankMsgNotBlankStringWithWhitespacesShouldNotThrow" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotBlankNotBlankStringShouldNotThrow" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsAssignable" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotBlankMsgNotBlankStringShouldNotThrow" time="0"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testValidIndex_withMessage_array" time="0"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testValidIndex_withMessage_array" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNoNullElementsCollection1" time="0"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNoNullElementsCollection2" time="0.002"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testExclusiveBetween" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNoNullElementsCollection2" time="0"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testExclusiveBetween" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testInclusiveBetween" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotBlankEmptyStringShouldThrow" time="0"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotBlankMsgNullStringShouldThrow" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotBlankMsgNullStringShouldThrow" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotBlankMsgNotBlankStringWithNewlinesShouldNotThrow" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsAssignable_withMessage" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotEmptyString1" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotEmptyString2" time="0"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotEmptyCollection1" time="0.007"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotEmptyCollection1" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotEmptyCollection2" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotBlankMsgBlankStringWithWhitespacesShouldThrow" time="0"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotEmptyArray1" time="0"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotEmptyArray1" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotEmptyArray2" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testValidIndex_collection" time="0"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testMatchesPattern_withMessage" time="0.004"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotBlankNotBlankStringWithWhitespacesShouldNotThrow" time="0"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsInstanceOfExceptionMessage" time="0"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsTrue1" time="0"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsTrue2" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsTrue3" time="0"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testMatchesPattern_withMessage" time="0"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotBlankNotBlankStringWithWhitespacesShouldNotThrow" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsInstanceOfExceptionMessage" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsTrue1" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsTrue2" time="0"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsTrue3" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsTrue4" time="0"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsTrue5" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsTrue5" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testExclusiveBetween_withMessage" time="0"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotBlankBlankStringWithWhitespacesShouldThrow" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNotBlankBlankStringWithWhitespacesShouldThrow" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testConstructor" time="0"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsInstanceOf_withMessage" time="0"/>
-  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNoNullElementsArray1" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testIsInstanceOf_withMessage" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNoNullElementsArray1" time="0"/>
   <testcase classname="org.apache.commons.lang3.ValidateTest" name="testNoNullElementsArray2" time="0"/>
 </testsuite>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="71" failures="0" name="org.apache.commons.lang3.BooleanUtilsTest" time="0.037" errors="0" skipped="0">
+<testsuite tests="71" failures="0" name="org.apache.commons.lang3.BooleanUtilsTest" time="0.028" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="24.0.1+9-30"/>
     <property name="sun.boot.library.path" value="C:\Users\djrag\.jdks\openjdk-24.0.1\bin"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject\codebase"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject"/>
+    <property name="user.dir" value="C:\Users\djrag\Downloads\Computerriance\SE333\Project\se333_finalproject\codebase"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="java.runtime.version" value="24.0.1+9-30"/>
     <property name="os.arch" value="amd64"/>
@@ -41,13 +41,11 @@
     <property name="user.timezone" value="America/Chicago"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="24"/>
-    <property name="trimStackTrace" value="false"/>
     <property name="user.name" value="djrag"/>
     <property name="java.class.path" value="C:\Users\djrag\Downloads\Computerriance\apache-maven-3.9.9\boot\plexus-classworlds-2.8.0.jar"/>
-    <property name="skipITs" value="true"/>
     <property name="java.vm.specification.version" value="24"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f codebase/pom.xml -DskipITs=true -U test -DtrimStackTrace=false"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
     <property name="java.home" value="C:\Users\djrag\.jdks\openjdk-24.0.1"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -63,75 +61,75 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testXor_primitive_nullInput" time="0.002"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testAnd_object_nullElementInput" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testXor_primitive_nullInput" time="0.003"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testAnd_object_nullElementInput" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toStringTrueFalse_boolean" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_int" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_int" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testXor_primitive_emptyInput" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanDefaultIfNull_Boolean_boolean" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_Integer" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toInteger_boolean_int_int" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_Integer_Integer_Integer_Integer_noMatch" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toInteger_boolean_int_int" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_Integer_Integer_Integer_Integer_noMatch" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testAnd_primitive_nullInput" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_isNotFalse_Boolean" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_isNotFalse_Boolean" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testAnd_object_nullInput" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_String" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_String" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toStringYesNo_boolean" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_String_String_String_noMatch" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_Integer_Integer_Integer_Integer" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_String_String_String_noMatch" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_Integer_Integer_Integer_Integer" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_Integer_Integer_Integer" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toIntegerObject_Boolean_Integer_Integer_Integer" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toIntegerObject_Boolean_Integer_Integer_Integer" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testOr_primitive_nullInput" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_String_String_String_String" time="0.002"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toStringOnOff_Boolean" time="0.005"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testXor_object_validInput_2items" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_String_String_String_String_noMatch" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_String_String_String_String" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toStringOnOff_Boolean" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testXor_object_validInput_2items" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_String_String_String_String_noMatch" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testXor_object_validInput_3items" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toIntegerObject_Boolean" time="0.005"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testAnd_object_validInput_2items" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testAnd_object_validInput_3items" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_isNotTrue_Boolean" time="0.003"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_Integer_Integer_Integer_nullValue" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_String" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toIntegerObject_Boolean" time="0.003"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testAnd_object_validInput_2items" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testAnd_object_validInput_3items" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_isNotTrue_Boolean" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_Integer_Integer_Integer_nullValue" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_String" time="0.002"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_int_int_int" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_Integer_Integer_Integer_Integer_nullValue" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_Integer_Integer_Integer_Integer_nullValue" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testXor_object_nullElementInput" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toStringTrueFalse_Boolean" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_Integer_Integer_Integer_noMatch" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_Integer_Integer_Integer_noMatch" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testOr_object_emptyInput" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testAnd_object_emptyInput" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testXor_object_nullInput" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testOr_primitive_validInput_2items" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testOr_primitive_validInput_3items" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toStringYesNo_Boolean" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_isFalse_Boolean" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_isFalse_Boolean" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testAnd_primitive_validInput_2items" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testAnd_primitive_validInput_3items" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_int" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_int" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toInteger_boolean" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_String_String_String_nullValue" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_Boolean" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toIntegerObject_boolean_Integer_Integer" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_isTrue_Boolean" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toIntegerObject_boolean_Integer_Integer" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_isTrue_Boolean" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testXor_primitive_validInput_2items" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testXor_primitive_validInput_3items" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testXor_primitive_validInput_3items" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testXor_object_emptyInput" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testOr_object_validInput_2items" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testOr_object_validInput_3items" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testOr_object_validInput_3items" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_String_String_String" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testAnd_primitive_emptyInput" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_int_int_int_noMatch" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testOr_object_nullElementInput" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testAnd_primitive_emptyInput" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_int_int_int_noMatch" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testOr_object_nullElementInput" time="0.003"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toInteger_Boolean_int_int_int" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_negate_Boolean" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_negate_Boolean" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toString_Boolean_String_String_String" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBoolean_int_int_int_noMatch" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toStringOnOff_boolean" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toStringOnOff_boolean" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_int_int_int" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testOr_object_nullInput" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toIntegerObject_boolean" time="0.001"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_String_String_String_String_nullValue" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testOr_object_nullInput" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toIntegerObject_boolean" time="0"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toBooleanObject_String_String_String_String_nullValue" time="0.001"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="test_toString_boolean_String_String_String" time="0"/>
-  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testConstructor" time="0.001"/>
+  <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testConstructor" time="0"/>
   <testcase classname="org.apache.commons.lang3.BooleanUtilsTest" name="testOr_primitive_emptyInput" time="0"/>
 </testsuite>
