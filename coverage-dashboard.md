@@ -1,6 +1,6 @@
 # Coverage Dashboard
 
-Last recorded run: 2025-11-15T02:33:29.326362 (run id: `local-20251115-023329`)
+Last recorded run: 2025-11-15T02:38:08.520534 (run id: `mvn-20251115-023705`)
 
 - Command: `mvn -U clean verify`
 - JaCoCo report: `target/jacoco-report/jacoco.xml`
@@ -19,8 +19,8 @@ Notes:
 Repository state for this run:
 
 - Branch: `auto/ci-improve/coverage-history-update-20251115`
-- Commit: `9d78e59`
-- Analyzer command: `python3 .mcp/coverage_analyzer.py`
+- Commit: `21dff54`
+- Analyzer command: `mvn -U clean verify` (full Maven verify run)
 
 If you'd like, I can:
 
