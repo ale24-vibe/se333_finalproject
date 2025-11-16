@@ -6,6 +6,8 @@ import sys
 import time
 import threading
 from git_tools import GitAutomation, WorkflowIntegration, GitStatus
+import importlib.util
+from pathlib import Path
 
 # Create MCP instance
 mcp = FastMCP("Calculator MCP Server")
@@ -234,6 +236,42 @@ def automated_workflow(
             "success": False,
             "message": f"Error in workflow: {str(e)}"
         }
+
+@mcp.tool(description="Generate spec-based tests (equivalence classes + boundary value analysis)")
+def spec_generate_tests(spec: dict, write_files: bool = True) -> dict:
+    """
+    Generate test cases from a specification and optionally write a JUnit test class.
+
+    Args:
+        spec: JSON-like dict describing the class/method and parameter specs. Example:
+            {
+              "package": "example",
+              "testPackage": "example",
+              "classUnderTest": "example.Calculator",
+              "method": "add",
+              "testClassName": "CalculatorSpecTests",
+              "outputDir": "src/test/java",
+              "output": {"type": "int", "oracle": "a + b"},
+              "params": [
+                {"name": "a", "type": "int", "domain": {"min": -10, "max": 10}},
+                {"name": "b", "type": "int", "domain": {"min": -10, "max": 10}}
+              ]
+            }
+        write_files: when True, writes a JUnit file and returns its path in result["file"].
+
+    Returns: dict with keys: summary, file (optional), nominal, cases.
+    """
+    try:
+        module_path = Path('.mcp') / 'spec_test_generator.py'
+        spec_loader = importlib.util.spec_from_file_location('spec_test_generator', str(module_path))
+        if spec_loader is None or spec_loader.loader is None:
+            return {"success": False, "message": f"Unable to load generator at {module_path}"}
+        mod = importlib.util.module_from_spec(spec_loader)
+        spec_loader.loader.exec_module(mod)
+        result = mod.generate_and_render(spec, write_files)
+        return {"success": True, **result}
+    except Exception as e:
+        return {"success": False, "message": str(e)}
     
 @mcp.tool(description="Create a trivial change, commit, and optionally push")
 def create_and_commit(
