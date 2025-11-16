@@ -34,11 +34,19 @@ jobs:
       - name: Run coverage analyzer
         id: analyze
         run: |
-          python3 .mcp/coverage_analyzer.py > coverage.json
+          python3 .mcp/coverage_analyzer.py --json > coverage.json
           python3 - <<'PY'
           import json,sys,os
           j=json.load(open('coverage.json'))
-          cov=j.get('coverage_pct') or j.get('coverage_pct') or j.get('coverage')
+          cov = j.get('coverage_pct')
+          if cov is None:
+              c = j.get('coverage') or {}
+              if isinstance(c, dict):
+                  line = c.get('line') or {}
+                  instr = c.get('instruction') or {}
+                  cov = line.get('percent') if isinstance(line, dict) else None
+                  if cov is None:
+                      cov = instr.get('percent') if isinstance(instr, dict) else None
           if cov is None:
               print('No coverage percent found in analyzer output')
               sys.exit(1)

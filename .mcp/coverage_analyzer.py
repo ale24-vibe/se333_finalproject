@@ -2,8 +2,8 @@
 """
 Parse JaCoCo XML report and print uncovered classes/methods and simple recommendations.
 
-This script now supports a --json flag to emit machine-readable JSON suitable for
-redirecting into a file (for example: `.mcp/coverage_analyzer.py --json > coverage.json`).
+Supports a --json flag to emit machine-readable JSON suitable for redirecting into
+`coverage.json` in CI (e.g., `.mcp/coverage_analyzer.py --json > coverage.json`).
 """
 import argparse
 import json
@@ -12,7 +12,22 @@ from pathlib import Path
 from datetime import datetime
 
 
-JACOCO_XML = Path('target/jacoco-report/jacoco.xml')
+def find_jacoco_xml() -> Path | None:
+    """Locate a JaCoCo XML report among common Maven paths.
+
+    Returns the first existing path or None if not found.
+    """
+    candidates = [
+        Path('target/site/jacoco/jacoco.xml'),
+        Path('target/jacoco-report/jacoco.xml'),
+        Path('target/jacoco/jacoco.xml'),
+        Path('codebase/target/site/jacoco/jacoco.xml'),
+        Path('codebase/target/jacoco-report/jacoco.xml'),
+    ]
+    for p in candidates:
+        if p.exists():
+            return p
+    return None
 
 
 def parse_jacoco(xml_path: Path):
@@ -82,20 +97,29 @@ def parse_jacoco(xml_path: Path):
 
 
 def analyze(json_out: bool = False):
-    if not JACOCO_XML.exists():
-        msg = f"JaCoCo XML not found at {JACOCO_XML}. Run `mvn verify` or `mvn test` to generate it."
+    xml_path = find_jacoco_xml()
+    if not xml_path:
+        msg = "JaCoCo XML not found in common locations. Run `mvn verify` or `mvn test` to generate it."
         if json_out:
             print(json.dumps({'error': msg}))
             return 1
         print(msg)
         return 1
 
-    coverage, uncovered = parse_jacoco(JACOCO_XML)
+    coverage, uncovered = parse_jacoco(xml_path)
 
     if json_out:
+        # Choose overall coverage as LINE percent if present, else INSTRUCTION
+        overall = None
+        if 'line' in coverage and 'percent' in coverage['line']:
+            overall = coverage['line']['percent']
+        elif 'instruction' in coverage and 'percent' in coverage['instruction']:
+            overall = coverage['instruction']['percent']
+
         payload = {
             'timestamp': datetime.now().isoformat(),
-            'report_path': str(JACOCO_XML),
+            'report_path': str(xml_path),
+            'coverage_pct': overall,
             'coverage': {k: v['percent'] for k, v in coverage.items()},
             'coverage_detail': coverage,
             'uncovered': uncovered,
