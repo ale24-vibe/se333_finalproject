@@ -1,5 +1,6 @@
 # Ignore generated coverage/output files
 coverage.json
 coverage-*.json
-target/
+# target/ (temporarily disabled to commit surefire reports)
+# target/
 .mcp/*.out
