@@ -13,6 +13,7 @@ on:
 
 env:
   COVERAGE_THRESHOLD: 80.0
+  PR_AUTOMATION_ENABLED: true
 
 jobs:
   build-and-check:
@@ -60,15 +61,31 @@ jobs:
           print('coverage='+str(cov))
           PY
 
-      - name: Create branch + PR when coverage >= threshold
-        if: ${{ steps.analyze.outputs.coverage && (fromJson(steps.analyze.outputs.coverage) >= env.COVERAGE_THRESHOLD) }}
+      - name: Check PR token availability
+        id: pr_token_check
+        run: |
+          # Detect presence of repository secret indirectly: use an env var injected by workflow_dispatch or set manually.
+          if [ -z "${PR_AUTOMATION_TOKEN}" ]; then
+            echo "available=false" >> $GITHUB_OUTPUT
+          else
+            echo "available=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create branch + PR when coverage >= threshold (requires PR_AUTOMATION_TOKEN env)
+        if: ${{ steps.analyze.outputs.coverage && (fromJson(steps.analyze.outputs.coverage) >= env.COVERAGE_THRESHOLD) && steps.pr_token_check.outputs.available == 'true' && env.PR_AUTOMATION_ENABLED == 'true' }}
         uses: peter-evans/create-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ env.GITHUB_TOKEN }}
           commit-message: 'chore: automated coverage PR - coverage ${{ steps.analyze.outputs.coverage }} - ${{ github.sha }}'
           title: 'Automated: coverage >= ${{ env.COVERAGE_THRESHOLD }}%'
           body: |
             CI detected coverage >= threshold.
-            This PR was opened automatically by CI to record the increase and trigger protected-branch checks.
+            This PR was opened automatically by CI using PAT secret PR_AUTOMATION_TOKEN.
           branch: auto/coverage-${{ github.sha }}
           base: main
+
+      - name: Skip PR (no token or disabled)
+        if: ${{ steps.analyze.outputs.coverage && (fromJson(steps.analyze.outputs.coverage) >= env.COVERAGE_THRESHOLD) && (steps.pr_token_check.outputs.available != 'true' || env.PR_AUTOMATION_ENABLED != 'true') }}
+        run: echo "Coverage threshold met but PR automation disabled or token missing. Create PR manually for branch auto/coverage-${{ github.sha }} if desired." 
