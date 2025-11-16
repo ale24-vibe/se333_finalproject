@@ -1,9 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: org.apache.commons.lang3.builder.HashCodeBuilderAndEqualsBuilderTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.018 sec <<< FAILURE!
+Tests run: 4, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.01 sec <<< FAILURE!
 testIntegerWithTransients(org.apache.commons.lang3.builder.HashCodeBuilderAndEqualsBuilderTest)  Time elapsed: 0 sec  <<< ERROR!
-java.lang.reflect.InaccessibleObjectException: Unable to make field static final char[] java.lang.Integer.digits accessible: module java.base does not "opens java.lang" to unnamed module @3581c5f3
+java.lang.reflect.InaccessibleObjectException: Unable to make field static final char[] java.lang.Integer.digits accessible: module java.base does not "opens java.lang" to unnamed module @4157f54e
 	at java.base/java.lang.reflect.AccessibleObject.throwInaccessibleObjectException(AccessibleObject.java:353)
 	at java.base/java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:329)
 	at java.base/java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:277)
@@ -17,7 +17,7 @@ java.lang.reflect.InaccessibleObjectException: Unable to make field static final
 	at org.apache.commons.lang3.builder.HashCodeBuilderAndEqualsBuilderTest.testIntegerWithTransients(HashCodeBuilderAndEqualsBuilderTest.java:47)
 
 testInteger(org.apache.commons.lang3.builder.HashCodeBuilderAndEqualsBuilderTest)  Time elapsed: 0.002 sec  <<< ERROR!
-java.lang.reflect.InaccessibleObjectException: Unable to make field static final char[] java.lang.Integer.digits accessible: module java.base does not "opens java.lang" to unnamed module @3581c5f3
+java.lang.reflect.InaccessibleObjectException: Unable to make field static final char[] java.lang.Integer.digits accessible: module java.base does not "opens java.lang" to unnamed module @4157f54e
 	at java.base/java.lang.reflect.AccessibleObject.throwInaccessibleObjectException(AccessibleObject.java:353)
 	at java.base/java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:329)
 	at java.base/java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:277)

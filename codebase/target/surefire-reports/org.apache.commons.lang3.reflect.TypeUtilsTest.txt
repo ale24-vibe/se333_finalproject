@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: org.apache.commons.lang3.reflect.TypeUtilsTest
 -------------------------------------------------------------------------------
-Tests run: 11, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 0.082 sec <<< FAILURE!
-testGetTypeArguments(org.apache.commons.lang3.reflect.TypeUtilsTest)  Time elapsed: 0.004 sec  <<< ERROR!
+Tests run: 11, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 0.069 sec <<< FAILURE!
+testGetTypeArguments(org.apache.commons.lang3.reflect.TypeUtilsTest)  Time elapsed: 0.007 sec  <<< ERROR!
 java.lang.NullPointerException: Cannot invoke "java.util.Map.containsKey(Object)" because "typeVarAssigns" is null
 	at org.apache.commons.lang3.reflect.TypeUtilsTest.testGetTypeArguments(TypeUtilsTest.java:488)
 
-testIsAssignable(org.apache.commons.lang3.reflect.TypeUtilsTest)  Time elapsed: 0.035 sec  <<< FAILURE!
+testIsAssignable(org.apache.commons.lang3.reflect.TypeUtilsTest)  Time elapsed: 0.049 sec  <<< FAILURE!
 java.lang.AssertionError: null
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)

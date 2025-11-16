@@ -5,7 +5,12 @@ Parse common JaCoCo XML locations and print uncovered methods/classes.
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-POSSIBLE = [Path('target/site/jacoco/jacoco.xml'), Path('target/jacoco-report/jacoco.xml')]
+POSSIBLE = [
+    Path('target/site/jacoco/jacoco.xml'),
+    Path('target/jacoco-report/jacoco.xml'),
+    Path('codebase/target/site/jacoco/jacoco.xml'),
+    Path('codebase/target/jacoco-report/jacoco.xml'),
+]
 
 def find_xml():
     for p in POSSIBLE:

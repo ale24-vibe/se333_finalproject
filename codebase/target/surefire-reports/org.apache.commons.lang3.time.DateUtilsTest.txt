@@ -1,15 +1,15 @@
 -------------------------------------------------------------------------------
 Test set: org.apache.commons.lang3.time.DateUtilsTest
 -------------------------------------------------------------------------------
-Tests run: 38, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.131 sec <<< FAILURE!
-testLANG799_DE_OK(org.apache.commons.lang3.time.DateUtilsTest)  Time elapsed: 0.004 sec  <<< ERROR!
+Tests run: 38, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.078 sec <<< FAILURE!
+testLANG799_DE_OK(org.apache.commons.lang3.time.DateUtilsTest)  Time elapsed: 0.002 sec  <<< ERROR!
 java.text.ParseException: Unable to parse the date: Mi, 09 Apr 2008 23:55:38 GMT
 	at org.apache.commons.lang3.time.DateUtils.parseDateWithLeniency(DateUtils.java:390)
 	at org.apache.commons.lang3.time.DateUtils.parseDate(DateUtils.java:290)
 	at org.apache.commons.lang3.time.DateUtils.parseDate(DateUtils.java:267)
 	at org.apache.commons.lang3.time.DateUtilsTest.testLANG799_DE_OK(DateUtilsTest.java:1598)
 
-testLANG799_EN_WITH_DE_LOCALE(org.apache.commons.lang3.time.DateUtilsTest)  Time elapsed: 0.001 sec  <<< ERROR!
+testLANG799_EN_WITH_DE_LOCALE(org.apache.commons.lang3.time.DateUtilsTest)  Time elapsed: 0.003 sec  <<< ERROR!
 java.text.ParseException: Unable to parse the date: Mi, 09 Apr 2008 23:55:38 GMT
 	at org.apache.commons.lang3.time.DateUtils.parseDateWithLeniency(DateUtils.java:390)
 	at org.apache.commons.lang3.time.DateUtils.parseDate(DateUtils.java:290)

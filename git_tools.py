@@ -236,20 +236,23 @@ class GitAutomation:
             coverage_stats: Optional coverage statistics to include in commit
             
         Returns:
-            CommitResult with commit details
-        """
-        try:
-            # Build commit message with coverage stats if provided
-            full_message = message
-            if coverage_stats:
-                full_message += "\n\n"
-                full_message += self._format_coverage_stats(coverage_stats)
-
-            # Verify we have staged changes
-            status = self.git_status()
-            if not status.staged_files:
-                return CommitResult(
-                    success=False,
+            # Special sentinel: if caller passes an explicit empty list we treat it as
+            # request to include everything (even normally ignored build output).
+            if exclude_patterns is None:
+                exclude_patterns = [
+                    "target/*",
+                    "build/*",
+                    "__pycache__/*",
+                    "*.class",
+                    "*.pyc",
+                    "*.egg-info/*",
+                    ".pytest_cache/*",
+                    ".coverage",
+                    "*.o",
+                    "*.so",
+                    "node_modules/*"
+                ]
+            force_all = (exclude_patterns == [])
                     message="No staged changes to commit"
                 )
 
@@ -266,11 +269,12 @@ class GitAutomation:
 
             return CommitResult(
                 success=True,
-                message=f"Commit successful: {message}",
-                commit_hash=commit_hash
-            )
-
-        except Exception as e:
+                    should_exclude = False
+                    if not force_all:
+                        should_exclude = any(
+                            self._matches_pattern(filename, pattern)
+                            for pattern in exclude_patterns
+                        )
             return CommitResult(
                 success=False,
                 message=f"Error during commit: {str(e)}"
@@ -283,23 +287,32 @@ class GitAutomation:
         Args:
             remote: Remote name (default: origin)
             branch: Branch to push (default: current branch)
-            
-        Returns:
-            Dict with push result
-        """
-        try:
-            # Get current branch if not specified
-            if branch is None:
-                status = self.git_status()
-                branch = status.current_branch
+                # Stage in manageable chunks to avoid command length issues; use -f for ignored build outputs
+                chunk_size = 200
+                staged = 0
+                for i in range(0, len(files_to_add), chunk_size):
+                    chunk = files_to_add[i:i + chunk_size]
+                    # Add -f selectively if any path is under target/ and force_all requested
+                    add_cmd = ["add"]
+                    if force_all and any(p.startswith("codebase/target/") or p.startswith("target/") for p in chunk):
+                        add_cmd.append("-f")
+                    add_cmd += chunk
+                    returncode, c_stdout, c_stderr = self._run_git(add_cmd)
+                    if returncode != 0:
+                        return {
+                            "success": False,
+                            "message": f"Failed to stage files (chunk {i//chunk_size + 1}): {c_stderr}",
+                            "staged_count": staged
+                        }
+                    staged += len(chunk)
 
-            # Configure upstream and push
-            returncode, stdout, stderr = self._run_git(
-                ["push", "-u", remote, branch]
-            )
-
-            if returncode != 0:
                 return {
+                    "success": True,
+                    "message": f"Successfully staged {staged} file(s)",
+                    "staged_count": staged,
+                    "staged_files": files_to_add,
+                    "excluded_patterns": exclude_patterns
+                }
                     "success": False,
                     "message": f"Push failed: {stderr}",
                     "remote": remote,

@@ -1,4 +1,22 @@
 -------------------------------------------------------------------------------
 Test set: org.apache.commons.lang3.reflect.FieldUtilsTest
 -------------------------------------------------------------------------------
-Tests run: 44, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.069 sec
+Tests run: 44, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.048 sec <<< FAILURE!
+testGetAllFieldsList(org.apache.commons.lang3.reflect.FieldUtilsTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<5> but was:<7>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:555)
+	at org.junit.Assert.assertEquals(Assert.java:542)
+	at org.apache.commons.lang3.reflect.FieldUtilsTest.testGetAllFieldsList(FieldUtilsTest.java:167)
+
+testGetAllFields(org.apache.commons.lang3.reflect.FieldUtilsTest)  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<5> but was:<7>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:555)
+	at org.junit.Assert.assertEquals(Assert.java:542)
+	at org.apache.commons.lang3.reflect.FieldUtilsTest.testGetAllFields(FieldUtilsTest.java:147)
+
