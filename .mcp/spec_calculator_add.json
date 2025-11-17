@@ -4,6 +4,7 @@
   "classUnderTest": "example.Calculator",
   "method": "add",
   "testClassName": "CalculatorSpecTests",
+  "junitVersion": "5",
   "output": {"type": "int", "oracle": "a + b"},
   "params": [
     {"name": "a", "type": "int", "domain": {"min": -10, "max": 10}},

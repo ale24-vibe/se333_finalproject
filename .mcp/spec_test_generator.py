@@ -292,7 +292,11 @@ def render_junit(spec: Dict[str, Any], cases: List[Dict[str, Any]]) -> str:
         oracle_expr = spec["output"].get("oracle")
 
     pkg_line = f"package {package};\n\n" if package else ""
-    imports = """import org.junit.Test;\nimport static org.junit.Assert.*;\n\n"""
+    junit_version = str(spec.get("junitVersion", "5")).strip()
+    if junit_version == "4":
+        imports = """import org.junit.Test;\nimport static org.junit.Assert.*;\n\n"""
+    else:  # default JUnit 5
+        imports = """import org.junit.jupiter.api.Test;\nimport static org.junit.jupiter.api.Assertions.*;\n\n"""
 
     # Determine simple class name and constructor
     cls_simple = class_under_test.split(".")[-1] if class_under_test else "Calculator"
