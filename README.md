@@ -92,5 +92,3 @@ mvn com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs
 ```
 
 ---
-
-If you'd like, I can open a small PR with this README change on the current feature branch (`auto/add-spotbugs-plugin`) or create a separate branch. Which do you prefer?
