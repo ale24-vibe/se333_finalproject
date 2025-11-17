@@ -15,6 +15,7 @@ import shlex
 import shutil
 import subprocess
 import sys
+from xml.etree import ElementTree as ET
 from datetime import datetime
 
 
@@ -40,9 +41,63 @@ def detect_tool(name):
 
 
 def run_spotbugs():
-    # Use maven plugin goal (will download plugin if needed)
+    # Try Maven plugin first (will download plugin if needed). If the plugin
+    # resolution fails, prefer the SpotBugs CLI if it's installed locally.
     code, out = run('mvn -q com.github.spotbugs:spotbugs-maven-plugin:4.7.3:spotbugs')
-    return {'name': 'spotbugs', 'exit_code': code, 'output_snippet': out[:2000]}
+    result = {'name': 'spotbugs', 'exit_code': code, 'output_snippet': out[:2000]}
+    if code == 0:
+        return result
+
+    # Maven plugin failed. If SpotBugs CLI is available, run it against compiled classes.
+    if detect_tool('spotbugs'):
+        # Ensure project is compiled so target/classes exists.
+        run('mvn -q -DskipTests package', capture=True)
+        cli_cmd = 'spotbugs -textui -effort:max -low -xml:withMessages -output target/spotbugsXml.xml target/classes'
+        cli_code, cli_out = run(cli_cmd)
+        # attach CLI info to the result and parse the XML report if present
+        report_path = os.path.join(ROOT, 'target', 'spotbugsXml.xml')
+        cli_info = {
+            'cli_used': True,
+            'cli_exit_code': cli_code,
+            'cli_output_snippet': cli_out[:2000],
+            'cli_report': 'target/spotbugsXml.xml',
+            'note': 'Maven plugin failed; fell back to SpotBugs CLI'
+        }
+        # Parse report for counts and sample issues
+        if os.path.exists(report_path):
+            try:
+                tree = ET.parse(report_path)
+                root = tree.getroot()
+                # Count BugInstance nodes
+                bug_instances = root.findall('.//BugInstance')
+                bug_count = len(bug_instances)
+                cli_info['cli_bug_count'] = bug_count
+                # collect up to 10 sample issues
+                samples = []
+                for bi in bug_instances[:10]:
+                    btype = bi.get('type') or ''
+                    category = bi.get('category') or ''
+                    priority = bi.get('priority') or ''
+                    # message may be in LongMessage or ShortMessage
+                    msg = ''
+                    lm = bi.find('LongMessage')
+                    if lm is not None and lm.text:
+                        msg = lm.text.strip()
+                    else:
+                        sm = bi.find('ShortMessage')
+                        if sm is not None and sm.text:
+                            msg = sm.text.strip()
+                    samples.append({'type': btype, 'category': category, 'priority': priority, 'message': msg})
+                cli_info['cli_issues_sample'] = samples
+            except Exception as e:
+                cli_info['cli_parse_error'] = str(e)
+
+        result.update(cli_info)
+        return result
+
+    # No CLI available; return the original plugin failure info.
+    result.update({'note': 'Maven plugin failed and SpotBugs CLI not found'})
+    return result
 
 
 def run_pmd():
