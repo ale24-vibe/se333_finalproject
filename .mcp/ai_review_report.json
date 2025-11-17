@@ -1,22 +1,16 @@
 {
-  "timestamp": "2025-11-16T18:59:30.327026",
+  "timestamp": "2025-11-16T19:46:17.025602",
   "results": [
     {
       "name": "spotbugs",
-      "exit_code": 1,
-      "output_snippet": "WARNING: A terminally deprecated method in sun.misc.Unsafe has been called\nWARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/opt/homebrew/Cellar/maven/3.9.11/libexec/lib/guice-5.1.0-classes.jar)\nWARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner\nWARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release\n[ERROR] Plugin com.github.spotbugs:spotbugs-maven-plugin:4.7.3 or one of its dependencies could not be resolved:\n[ERROR] \tcom.github.spotbugs:spotbugs-maven-plugin:jar:4.7.3 was not found in https://repo.maven.apache.org/maven2 during a previous attempt. This failure was cached in the local repository and resolution is not reattempted until the update interval of central has elapsed or updates are forced\n[ERROR] -> [Help 1]\n[ERROR] \n[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.\n[ERROR] Re-run Maven using the -X switch to enable full debug logging.\n[ERROR] \n[ERROR] For more information about the errors and possible solutions, please read the following articles:\n[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginResolutionException\n",
-      "cli_used": true,
-      "cli_exit_code": 0,
-      "cli_output_snippet": "",
-      "cli_report": "target/spotbugsXml.xml",
-      "note": "Maven plugin failed; fell back to SpotBugs CLI",
-      "cli_bug_count": 0,
-      "cli_issues_sample": []
+      "exit_code": 127,
+      "output_snippet": "",
+      "note": "Maven plugin failed and SpotBugs CLI not found"
     },
     {
       "name": "pmd",
-      "exit_code": 0,
-      "output_snippet": "WARNING: A terminally deprecated method in sun.misc.Unsafe has been called\nWARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/opt/homebrew/Cellar/maven/3.9.11/libexec/lib/guice-5.1.0-classes.jar)\nWARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner\nWARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release\n"
+      "exit_code": 127,
+      "output_snippet": ""
     },
     {
       "name": "google-java-format",
