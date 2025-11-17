@@ -1,59 +1,94 @@
-# MCP Server and dev setup
+# se333_finalproject
 
-This project contains a minimal MCP-compatible server and instructions to set up a virtual environment for development and testing with VS Code MCP integration.
+This repository contains two primary parts:
 
-Quick start
+- A minimal Python MCP-compatible server (tools exposed via the MCP protocol). See `server.py`.
+- A small Java project with tests and static analysis (Maven, JDK 17, JaCoCo, SpotBugs).
 
-1. Create a venv (recommended):
+## Quick start — Python MCP server
 
-	```markdown
-	# MCP Server and dev setup
+1. Create and activate a virtualenv (recommended):
 
-	This project contains a minimal MCP-compatible server and instructions to set up a virtual environment for development and testing with VS Code MCP integration.
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
 
-	Quick start
+2. Install Python dependencies (from project root):
 
-	1. Create a venv (recommended):
+```bash
+pip install -e .
+# or explicitly:
+pip install fastapi uvicorn httpx fastmcp mcp[cli]
+```
 
-		python -m venv .venv
-		source .venv/bin/activate
+3. Run the server:
 
-	2. Install dependencies (from project root):
+```bash
+python server.py
+```
 
-		pip install -e .
+The server runs the MCP transport on port 8001 by default. Example discovery call:
 
-		or explicitly:
-		pip install fastapi uvicorn httpx fastmcp mcp[cli]
+```bash
+curl -s http://127.0.0.1:8001/tools | jq
+```
 
-	3. Run the server:
+In VS Code: open the Command Palette → `MCP: Add Server` and paste the server URL `http://127.0.0.1:8001` (or `http://127.0.0.1:8001/mcp`).
 
-		python server.py
+## Build & Test — Java (Maven)
 
-	4. In VS Code: Press Ctrl+Shift+P → MCP: Add Server and paste the server URL (e.g. http://127.0.0.1:8000/mcp or http://127.0.0.1:8000). Give it a name and press Enter.
+This project uses Java 17 (see `pom.xml`). Use Maven to build, run tests, and produce reports.
 
-	5. Test in the Chat view: "what is 1+2" should return the correct result.
+Common commands:
 
-	Discovery and named tools
+```bash
+# Build, run tests, and run verify-phase plugins (Jacoco, SpotBugs bound to verify in the POM):
+mvn -U -B clean verify
 
-	- The server exposes a discovery endpoint at GET /tools which returns a list of registered tool names. Example:
+# Run tests only:
+mvn -U test
+```
 
-		curl -s http://127.0.0.1:8001/tools | jq
+Reports produced by the build:
 
-	- This server does not expose named tools by default. Use the generic `/mcp` endpoint for transport-level testing.
+- JaCoCo XML: `target/jacoco-report/jacoco.xml`
+- JaCoCo HTML: `target/jacoco-report/index.html`
+- SpotBugs (via POM): executed during the `verify` phase; configuration is in `pom.xml`.
 
-	VS Code launch
+If you need to run SpotBugs ad-hoc, use the same version that is pinned in the POM:
 
-	Open the Run view in VS Code and use the "Run server" configuration to start the server from the editor.
+```bash
+mvn com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs
+```
 
-	Logging
+## Continuous Integration
 
-	The server logs initialize and MCP requests to the console, so watch the terminal panel or the output captured by the VS Code Run view while debugging.
+GitHub Actions workflow `.github/workflows/ai-code-review.yml` runs the following checks on PRs and pushes to `main`:
 
-	Notes
+- `mvn -U -B clean verify` (build, tests, JaCoCo, SpotBugs via POM)
+- PMD: `mvn pmd:check`
+- CodeQL analysis in a separate job
 
-	- The `server.py` prefers `fastmcp` if available, otherwise runs a small FastAPI app that accepts POST JSON payloads at `/mcp` with a `text` field.
-	- The calculator is intentionally conservative: it only evaluates expressions containing digits and + - * / ( ) to avoid arbitrary code execution.
+Note: the workflow relies on the SpotBugs plugin being declared in `pom.xml` to avoid version resolution issues.
 
-	# se333_finalproject
-	```
-autocommit: 2025-11-15T00:57:16.846976
+## Notes
+
+- Python server: `server.py` uses `fastmcp` when available, otherwise serves a FastAPI endpoint at `/mcp`.
+- Java: project compiler source/target is Java 17 (see `pom.xml` properties).
+- If you want CI to upload SpotBugs/JaCoCo artifacts, we can add `actions/upload-artifact` steps.
+
+## Quick commands
+
+```bash
+# Start Python server
+source .venv/bin/activate && python server.py
+
+# Run full Java build + checks
+mvn -U -B clean verify
+
+# Run SpotBugs manually (if needed)
+mvn com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs
+```
+
+---
