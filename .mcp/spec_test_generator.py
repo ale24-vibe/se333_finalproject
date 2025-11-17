@@ -314,7 +314,10 @@ def render_junit(spec: Dict[str, Any], cases: List[Dict[str, Any]]) -> str:
             name_parts.append(case.get("param", "p"))
             name_parts.append(case.get("class", "cls"))
         elif case["type"].startswith("boundary"):
-            name_parts.append(case.get("param", case.get("label", "combo")))
+            label = case.get("param", case.get("label", "combo"))
+            # sanitize any hyphens to underscores for valid Java identifiers
+            label = str(label).replace('-', '_')
+            name_parts.append(label)
         mname = "test_" + "_".join(name_parts) + f"_{idx}"
         sb.append("    @Test\n")
         sb.append(f"    public void {mname}() {{\n")

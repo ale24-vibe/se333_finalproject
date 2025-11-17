@@ -126,13 +126,13 @@ public class CalculatorSpecTests {
     }
 
     @Test
-    public void test_spec_boundary_combo_all-min_20() {
+    public void test_spec_boundary_combo_all_min_20() {
         Calculator obj = new Calculator();
         assertEquals(-20, obj.add(-10, -10));
     }
 
     @Test
-    public void test_spec_boundary_combo_all-max_21() {
+    public void test_spec_boundary_combo_all_max_21() {
         Calculator obj = new Calculator();
         assertEquals(20, obj.add(10, 10));
     }
