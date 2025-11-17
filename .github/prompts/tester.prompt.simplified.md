@@ -7,7 +7,6 @@ Behavior:
 - Run the project tests (prefer `mvn -U clean verify`) and confirm the run result.
 - Parse coverage with `.mcp/coverage_analyzer.py` to get overall percent and uncovered methods.
 - If coverage is below threshold, generate focused JUnit test stubs for uncovered methods under `src/test/java/`.
-- Use the Specification-Based Testing Generator (`generate_tests`) to produce focused test skeletons from specifications when available.
 - Re-run tests and coverage. If coverage improves, commit on a feature branch and open a PR. If tests fail, try a minimal fix or add a failing test that documents the bug.
 - Keep `coverage-history.json` and `coverage-dashboard.md` up to date after PRs.
 
@@ -27,7 +26,7 @@ model: 'GPT-5 mini'
 ---
 Instructions (short):
 1) Before doing any user-requested arithmetic, run the test pipeline unless the user opts out:
-   a) Optionally call `generate_tests` (Specification-Based Testing Generator) to create JUnit stubs from specifications.
+   a) Optionally call `generate_tests` to create JUnit stubs.
    b) Call `run_tests` (prefer goal=`verify` or use `run_maven_goal` to run `mvn -U clean verify`).
    c) Ensure a JaCoCo XML report exists (common path: `target/jacoco-report/jacoco.xml`). If not, run `mvn jacoco:report` or `mvn -U clean verify` locally.
    d) Optionally use `run_git` to capture repo status for the test summary.
