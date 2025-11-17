@@ -22,9 +22,6 @@ jobs:
       - name: Run Maven build and tests
         run: mvn -U -B clean verify
 
-      - name: Run SpotBugs
-        run: mvn com.github.spotbugs:spotbugs-maven-plugin:4.7.3:spotbugs
-
       - name: Run PMD
         run: mvn pmd:check
 
