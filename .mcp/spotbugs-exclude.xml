@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<!DOCTYPE BugCollection PUBLIC "-//GitHub//DTD SpotBugs Exclude 1.2//EN" "">
+<BugCollection>
+  <!-- Example exclusions for SpotBugs; keep empty by default. -->
+</BugCollection>
