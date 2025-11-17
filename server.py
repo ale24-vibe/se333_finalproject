@@ -58,6 +58,65 @@ def analyze_coverage() -> str:
     return out.strip()
 
 
+@mcp.tool(description="Run an arbitrary Maven goal (e.g., 'clean verify')")
+def run_maven_goal(goal: str = "verify") -> dict:
+    """
+    Run a Maven goal and return a dict with exit code and output.
+
+    Example: run_maven_goal('clean verify') or run_maven_goal('-DskipTests package')
+    """
+    try:
+        # allow passing complex goals/flags as a single string
+        args = ["mvn", "-U", "-B"] + shlex.split(goal)
+        p = subprocess.run(args, capture_output=True, text=True)
+        return {
+            "success": p.returncode == 0,
+            "exit_code": p.returncode,
+            "output": p.stdout,
+            "error": p.stderr
+        }
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+@mcp.tool(description="Get git repository status (compat wrapper for 'run_git' expected by the tester prompt)")
+def run_git() -> dict:
+    """Return the same structure as `git_status()` to satisfy the tester prompt's `run_git` call."""
+    try:
+        status = git_status()
+        return status
+    except Exception as e:
+        return {"success": False, "message": f"Error getting git status: {str(e)}"}
+
+
+@mcp.tool(description="Run AI code review and return its JSON summary")
+def ai_code_review() -> dict:
+    """
+    Run the `.mcp/ai_code_review.py` script and return the parsed JSON report (if produced)
+    along with the process exit code and output snippet.
+    """
+    try:
+        cmd = ["python3", ".mcp/ai_code_review.py"]
+        p = subprocess.run(cmd, capture_output=True, text=True)
+        result = {
+            "success": p.returncode == 0,
+            "exit_code": p.returncode,
+            "output": (p.stdout or "") + (p.stderr or "")
+        }
+        # read JSON report if it exists
+        report_file = Path('.mcp') / 'ai_review_report.json'
+        if report_file.exists():
+            try:
+                import json
+                result["report"] = json.loads(report_file.read_text(encoding="utf-8"))
+            except Exception as e:
+                result["report_error"] = str(e)
+
+        return result
+    except Exception as e:
+        return {"success": False, "message": str(e)}
+
+
 # ============================================================================
 # GIT AUTOMATION TOOLS
 # ============================================================================
