@@ -1,0 +1,12 @@
+{
+  "package": "example",
+  "testPackage": "example",
+  "classUnderTest": "example.Calculator",
+  "method": "add",
+  "testClassName": "CalculatorSpecTests",
+  "output": {"type": "int", "oracle": "a + b"},
+  "params": [
+    {"name": "a", "type": "int", "domain": {"min": -10, "max": 10}},
+    {"name": "b", "type": "int", "domain": {"min": -10, "max": 10}}
+  ]
+}
